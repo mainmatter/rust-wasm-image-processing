@@ -1,0 +1,9 @@
+[package]
+name = "frontend"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+photon = { package = "photon-rs", version = "0.3.3" }
+transformers = { version = "0.1.0", path = "../transformers" }
+wasm-bindgen = "0.2.106"

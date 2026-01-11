@@ -1,6 +1,3 @@
 [workspace]
-members = []
 resolver = "3"
-
-[workspace.dependencies]
-photon-rs = "0.3.3"
+members = ["backend", "frontend", "transformers"]
