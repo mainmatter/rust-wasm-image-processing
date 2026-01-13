@@ -1,0 +1,36 @@
+.tabbed menu { 
+  list-style-type: none;
+}
+
+.tabbed > input,
+.tabbed menu li {
+  display: none;
+}
+
+nav label {
+  cursor: pointer;
+}
+
+#ex1:checked ~ menu .ex1,
+#ex2:checked ~ menu .ex2,
+#ex3:checked ~ menu .ex3,
+#ex4:checked ~ menu .ex4,
+#ex5:checked ~ menu .ex5,
+#ex6:checked ~ menu .ex6 {
+  display: block;
+}
+
+nav label {
+  border-bottom: 5px solid transparent;
+  transition: border-bottom 250ms ease-in-out;
+}
+
+nav label:hover,
+#ex1:checked ~ nav label[for="ex1"],
+#ex2:checked ~ nav label[for="ex2"],
+#ex3:checked ~ nav label[for="ex3"],
+#ex4:checked ~ nav label[for="ex4"],
+#ex5:checked ~ nav label[for="ex5"],
+#ex6:checked ~ nav label[for="ex6"] {
+  border-bottom: 5px solid #6237ef;
+}

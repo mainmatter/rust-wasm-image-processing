@@ -1,20 +1,43 @@
-<html>
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
     <head>
-        <link data-trunk rel="scss" href="index.scss" />
         <link data-trunk rel="rust" />
         <link data-trunk rel="copy-file" href="../daisies.jpg" />
+        <link data-trunk rel="copy-file" href="./mainmatter.svg" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <link data-trunk rel="css" href="index.css" />
         <script>
-            let defaultImageUrl = "/daisies.jpg";
+            document.addEventListener("DOMContentLoaded", () => {
+                const exercise = new URL(document.location).searchParams.get("ex");
+                const tabSelector = document.querySelector(`#ex${exercise}`);
+                if (tabSelector) {
+                    tabSelector.checked = true;
+                }
 
-            document.addEventListener("DOMContentLoaded", async () => {
-                let response = await fetch(defaultImageUrl);
-                let buffer = await response.arrayBuffer();
-                imageData = new Uint8Array(buffer);
+                const navItems = Array.prototype.slice.call(document.querySelectorAll(".navbar-item"), 0);
+                for (let navItem of navItems) {
+                    navItem.addEventListener("click", (event) => {
+                        const exercise = event.currentTarget.getAttribute("for").match(/\d+/)[0];
+                        const url = new URL(window.location);
+                        url.searchParams.set("ex", exercise);
+                        history.pushState(null, "", url);
+                    }); 
+                }
             });
 
+            async function loadImage() {
+                let imageUrl = document.querySelector("#imageUrl").value;
+                let response = await fetch(imageUrl);
+                let buffer = await response.arrayBuffer();
+                return new Uint8Array(buffer);
+            }
+
             async function triggerBackend(url, params) {
+                let imageUrl = document.querySelector("#imageUrl").value;
                 const queryString = new URLSearchParams({
-                    image_url: `${window.location.origin}${defaultImageUrl}`,
+                    image_url: imageUrl,
                     ...params,
                 }).toString();
                 let response = await fetch(`/api/${url}?${queryString}`);
@@ -23,6 +46,7 @@
             }
 
             async function triggerWasm(endpoint, ...params) {
+                const imageData = await loadImage();
                 let output = wasmBindings[endpoint](imageData, ...params);
                 const blob = new Blob([output], { type: "image/jpeg" });
                 imageElement.src = URL.createObjectURL(blob);
@@ -30,11 +54,51 @@
         </script>
     </head>
     <body>
-        <div>
-            <a href="#" onclick="triggerBackend('exercise_1', {})">Backend exercise 1</a> |
-            <a href="#" onclick="triggerBackend('exercise_2', { do_one_thing: false, value: 100 })">Backend exercise 2</a> |
-            <a href="#" onclick="triggerWasm('exercise_1')">Wasm exercise 1</a> |
-            <a href="#" onclick="triggerWasm('exercise_2', false, 100)">Wasm exercise 2</a>
+        <div class="container tabbed">
+            <input checked="checked" id="ex1" type="radio" name="tabs">
+            <input id="ex2" type="radio" name="tabs">
+            <input id="ex3" type="radio" name="tabs">
+            <input id="ex4" type="radio" name="tabs">
+            <input id="ex5" type="radio" name="tabs">
+            <input id="ex6" type="radio" name="tabs">
+        
+            <nav class="navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img src="mainmatter.svg" width="64" height="28">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                        <label for="ex1" class="navbar-item">Exercise 1</label>
+                        <label for="ex2" class="navbar-item">Exercise 2</label>
+                        <label for="ex3" class="navbar-item">Exercise 3</label>
+                        <label for="ex4" class="navbar-item">Exercise 4</label>
+                        <label for="ex5" class="navbar-item">Exercise 5</label>
+                        <label for="ex6" class="navbar-item">Exercise 6</label>
+                    </div>
+                </div>
+            </nav>
+
+            <menu>
+                <li class="ex1">
+                    <h2>Exercise 1</h2>
+                    <form>
+                        <input type="text" id="imageUrl" placeholder="URL of source image" size="30">
+                        <div>
+                            <a href="#" onclick="triggerBackend('exercise_1', {})">Backend exercise 1</a> |
+                            <a href="#" onclick="triggerBackend('exercise_2', { do_one_thing: false, value: 100 })">Backend exercise 2</a> |
+                            <a href="#" onclick="triggerWasm('exercise_1')">Wasm exercise 1</a> |
+                            <a href="#" onclick="triggerWasm('exercise_2', false, 100)">Wasm exercise 2</a>
+                        </div>
+                    </form>
+                </li>
+                <li class="ex2"><h2>Exercise 2</h2></li>
+                <li class="ex3"><h2>Exercise 3</h2></li>
+                <li class="ex4"><h2>Exercise 4</h2></li>
+                <li class="ex5"><h2>Exercise 5</h2></li>
+                <li class="ex6"><h2>Exercise 6</h2></li>
+            </menu>
         </div>
         <img id="imageElement" src="" />
     </body>
