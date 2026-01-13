@@ -25,6 +25,14 @@
                         history.pushState(null, "", url);
                     }); 
                 }
+
+                 const navbarBurger = document.querySelector(".navbar-burger");
+                 navbarBurger.addEventListener("click", () => {
+                    const targetId = navbarBurger.dataset.target;
+                    const target = document.getElementById(targetId);
+                    navbarBurger.classList.toggle("is-active");
+                    target?.classList.toggle("is-active");
+                });
             });
 
             async function loadImage() {
@@ -54,7 +62,7 @@
         </script>
     </head>
     <body>
-        <div class="container tabbed">
+        <div class="tabbed">
             <input checked="checked" id="ex1" type="radio" name="tabs">
             <input id="ex2" type="radio" name="tabs">
             <input id="ex3" type="radio" name="tabs">
@@ -65,10 +73,16 @@
             <nav class="navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
-                        <img src="mainmatter.svg" width="64" height="28">
+                        <img src="mainmatter.svg" width="28" height="28">
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
                     </a>
                 </div>
-                <div class="navbar-menu">
+                <div class="navbar-menu" id="navMenu">
                     <div class="navbar-start">
                         <label for="ex1" class="navbar-item">Exercise 1</label>
                         <label for="ex2" class="navbar-item">Exercise 2</label>
@@ -80,26 +94,59 @@
                 </div>
             </nav>
 
-            <menu>
-                <li class="ex1">
-                    <h2>Exercise 1</h2>
-                    <form>
-                        <input type="text" id="imageUrl" placeholder="URL of source image" size="30">
-                        <div>
-                            <a href="#" onclick="triggerBackend('exercise_1', {})">Backend exercise 1</a> |
-                            <a href="#" onclick="triggerBackend('exercise_2', { do_one_thing: false, value: 100 })">Backend exercise 2</a> |
-                            <a href="#" onclick="triggerWasm('exercise_1')">Wasm exercise 1</a> |
-                            <a href="#" onclick="triggerWasm('exercise_2', false, 100)">Wasm exercise 2</a>
+            <section class="section menu">
+                <li class="ex1 box">
+                    <h1 class="is-size-3 has-text-weight-bold">Exercise 1</h1>
+                    <form class="block">
+                        <div class="field">
+                            <div class="control">
+                                <input type="text" class="input" id="imageUrl" placeholder="URL of source image" required size="30">
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button type="button" class="button is-link is-light" onclick="triggerBackend('exercise_1', {})">Backend exercise 1</button>
+                            </div>
+                            <div class="control">
+                                <button type="button" class="button is-link is-light" onclick="triggerBackend('exercise_2', { do_one_thing: false, value: 100 })">Backend exercise 2</button>
+                            </div>
+                            <div class="control">
+                                <button type="button" class="button is-link is-light" onclick="triggerWasm('exercise_1')">Wasm exercise 1</button>
+                            </div>
+                            <div class="control">
+                                <button type="button" class="button is-link is-light" onclick="triggerWasm('exercise_2', false, 100)">Wasm exercise 2</button>
+                            </div>
                         </div>
                     </form>
                 </li>
-                <li class="ex2"><h2>Exercise 2</h2></li>
-                <li class="ex3"><h2>Exercise 3</h2></li>
-                <li class="ex4"><h2>Exercise 4</h2></li>
-                <li class="ex5"><h2>Exercise 5</h2></li>
-                <li class="ex6"><h2>Exercise 6</h2></li>
-            </menu>
+
+                <li class="ex2 box">
+                    <h2>Exercise 2</h2>
+                </li>
+
+                <li class="ex3 box">
+                    <h2>Exercise 3</h2>
+                </li>
+
+                <li class="ex4 box">
+                    <h2>Exercise 4</h2>
+                </li>
+
+                <li class="ex5 box">
+                    <h2>Exercise 5</h2>
+                </li>
+
+                <li class="ex6 box">
+                    <h2>Exercise 6</h2>
+                </li>
+            </section>
         </div>
-        <img id="imageElement" src="" />
+        <section class="section">
+            <div class="box">
+                <h2 class="is-size-4 has-text-weight-bold">Result</h2>
+                <img id="imageElement" src="" />
+            </div>
+        </section>
     </body>
 </html>
