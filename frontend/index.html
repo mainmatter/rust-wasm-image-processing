@@ -14,7 +14,7 @@
         <script data-trunk src="index.js"></script>
         <script>
             // let defaultImageUrl = `${window.location.origin}/daisies.jpg`;
-            let defaultImageUrl = `https://picsum.photos/800/600`;
+            let defaultImageUrl = `https://picsum.photos/1800/1600`;
 
             document.addEventListener("DOMContentLoaded", async () => {
                 document.querySelector("#imageUrl").value = defaultImageUrl;
@@ -177,6 +177,28 @@
 
                 <li class="ex3 box">
                     <h2>Exercise 3</h2>
+                    <form class="block">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerBackend('exercise_3')"
+                                >
+                                    Backend exercise 3
+                                </button>
+                            </div>
+                            <div class="control">
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerWasm('exercise_3')"
+                                >
+                                    Wasm exercise 3
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </li>
 
                 <li class="ex4 box">

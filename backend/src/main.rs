@@ -6,7 +6,8 @@ use serde::Deserialize;
 async fn main() {
     let app = Router::new()
         .route("/api/exercise_1", get(exercise_1))
-        .route("/api/exercise_2", get(exercise_2));
+        .route("/api/exercise_2", get(exercise_2))
+        .route("/api/exercise_3", get(exercise_3));
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
@@ -43,6 +44,21 @@ async fn exercise_2(
         transformers::exercise_2::transform(photon_image, do_one_thing, value);
     })
     .await
+}
+
+async fn exercise_3(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
+    println!("Called exercise_3 with: {image_url}");
+
+    let response = reqwest::get(&image_url).await.unwrap();
+    let body = response.bytes().await.unwrap();
+    let photon_image = photon::native::open_image_from_bytes(&body).unwrap();
+
+    // Create thumbnail strip with these widths
+    let widths = [50, 100, 200, 400, 800, 1600];
+    let output_image = transformers::exercise_3::transform(&photon_image, &widths);
+
+    let output = output_image.get_bytes_jpeg(80);
+    ([(header::CONTENT_TYPE, "image/jpeg")], output)
 }
 
 async fn process_image<F: FnOnce(&mut PhotonImage)>(
