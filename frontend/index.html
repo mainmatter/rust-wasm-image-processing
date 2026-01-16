@@ -1,26 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="has-navbar-fixed-top">
     <head>
         <link data-trunk rel="rust" />
         <link data-trunk rel="copy-file" href="../daisies.jpg" />
         <link data-trunk rel="copy-file" href="./mainmatter.svg" />
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+        />
         <link data-trunk rel="css" href="index.css" />
-        <script data-trunk src="index.js" ></script>
+        <script data-trunk src="index.js"></script>
         <script>
-            async function loadImage() {
-                let imageUrl = document.querySelector("#imageUrl").value;
-                let response = await fetch(imageUrl);
-                let buffer = await response.arrayBuffer();
-                return new Uint8Array(buffer);
-            }
+            let defaultImageUrl = "/daisies.jpg";
+
+            document.addEventListener("DOMContentLoaded", async () => {
+                document.querySelector("#imageUrl").value = defaultImageUrl;
+                imageData = await loadImage(defaultImageUrl);
+                triggerWasm("exercise_2");
+            });
 
             async function triggerBackend(url, params) {
                 let imageUrl = document.querySelector("#imageUrl").value;
+
+                if (!imageUrl) {
+                    console.error("must specify image");
+                    return;
+                }
+
                 const queryString = new URLSearchParams({
-                    image_url: imageUrl,
+                    image_url: `${window.location.origin}${defaultImageUrl}`,
                     ...params,
                 }).toString();
                 let response = await fetch(`/api/${url}?${queryString}`);
@@ -29,28 +39,51 @@
             }
 
             async function triggerWasm(endpoint, ...params) {
-                const imageData = await loadImage();
+                let imageUrl = document.querySelector("#imageUrl").value;
+
+                if (!imageUrl) {
+                    console.error("must specify image");
+                    return;
+                }
+
+                const imageData = await loadImage(imageUrl);
                 let output = wasmBindings[endpoint](imageData, ...params);
                 const blob = new Blob([output], { type: "image/jpeg" });
                 imageElement.src = URL.createObjectURL(blob);
+            }
+
+            async function loadImage(imageUrl) {
+                let response = await fetch(imageUrl);
+                let buffer = await response.arrayBuffer();
+                return new Uint8Array(buffer);
             }
         </script>
     </head>
     <body>
         <div class="tabbed">
-            <input checked="checked" id="ex1" type="radio" name="tabs">
-            <input id="ex2" type="radio" name="tabs">
-            <input id="ex3" type="radio" name="tabs">
-            <input id="ex4" type="radio" name="tabs">
-            <input id="ex5" type="radio" name="tabs">
-            <input id="ex6" type="radio" name="tabs">
-        
-            <nav class="navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
+            <input checked="checked" id="ex1" type="radio" name="tabs" />
+            <input id="ex2" type="radio" name="tabs" />
+            <input id="ex3" type="radio" name="tabs" />
+            <input id="ex4" type="radio" name="tabs" />
+            <input id="ex5" type="radio" name="tabs" />
+            <input id="ex6" type="radio" name="tabs" />
+
+            <nav
+                class="navbar is-fixed-top is-black"
+                role="navigation"
+                aria-label="main navigation"
+            >
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
-                        <img src="mainmatter.svg" width="28" height="28">
+                        <img src="mainmatter.svg" width="28" height="28" />
                     </a>
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <a
+                        role="button"
+                        class="navbar-burger"
+                        aria-label="menu"
+                        aria-expanded="false"
+                        data-target="navMenu"
+                    >
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -75,22 +108,60 @@
                     <form class="block">
                         <div class="field">
                             <div class="control">
-                                <input type="text" class="input" id="imageUrl" placeholder="URL of source image" required size="30">
+                                <input
+                                    type="text"
+                                    class="input"
+                                    id="imageUrl"
+                                    placeholder="URL of source image"
+                                    required
+                                    size="30"
+                                />
                             </div>
                         </div>
 
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="button" class="button is-link is-light" onclick="triggerBackend('exercise_1', {})">Backend exercise 1</button>
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerBackend('exercise_1', {})"
+                                >
+                                    Backend exercise 1
+                                </button>
                             </div>
                             <div class="control">
-                                <button type="button" class="button is-link is-light" onclick="triggerBackend('exercise_2', { do_one_thing: false, value: 100 })">Backend exercise 2</button>
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="
+                                        triggerBackend('exercise_2', {
+                                            do_one_thing: false,
+                                            value: 100,
+                                        })
+                                    "
+                                >
+                                    Backend exercise 2
+                                </button>
                             </div>
                             <div class="control">
-                                <button type="button" class="button is-link is-light" onclick="triggerWasm('exercise_1')">Wasm exercise 1</button>
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerWasm('exercise_1')"
+                                >
+                                    Wasm exercise 1
+                                </button>
                             </div>
                             <div class="control">
-                                <button type="button" class="button is-link is-light" onclick="triggerWasm('exercise_2', false, 100)">Wasm exercise 2</button>
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="
+                                        triggerWasm('exercise_2', false, 100)
+                                    "
+                                >
+                                    Wasm exercise 2
+                                </button>
                             </div>
                         </div>
                     </form>
