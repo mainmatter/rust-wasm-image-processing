@@ -1,4 +1,13 @@
-use axum::{Router, extract::Query, http::header, response::IntoResponse, routing::get};
+use std::{any::Any, panic::UnwindSafe};
+
+use axum::{
+    Router,
+    body::Body,
+    extract::Query,
+    http::header,
+    response::{IntoResponse, Response},
+    routing::get,
+};
 use photon::PhotonImage;
 use serde::Deserialize;
 
@@ -45,16 +54,41 @@ async fn exercise_2(
     .await
 }
 
-async fn process_image<F: FnOnce(&mut PhotonImage)>(
-    image_url: &str,
-    f: F,
-) -> impl IntoResponse + use<F> {
+async fn process_image<F>(image_url: &str, f: F) -> impl IntoResponse + use<F>
+where
+    F: FnOnce(&mut PhotonImage) + UnwindSafe,
+{
     let response = reqwest::get(image_url).await.unwrap();
     let body = response.bytes().await.unwrap();
-    let mut photon_image = photon::native::open_image_from_bytes(&body).unwrap();
 
-    f(&mut photon_image);
+    let res = std::panic::catch_unwind(|| {
+        let mut photon_image = photon::native::open_image_from_bytes(&body).unwrap();
 
-    let output = photon_image.get_bytes_jpeg(80);
-    ([(header::CONTENT_TYPE, "image/jpeg")], output)
+        f(&mut photon_image);
+
+        photon_image.get_bytes_jpeg(80)
+    });
+
+    match res {
+        Ok(output) => Response::builder()
+            .status(200)
+            .header(header::CONTENT_TYPE, "image/jpeg")
+            .body(Body::from(output))
+            .unwrap(),
+        Err(err) => Response::builder()
+            .status(500)
+            .header(header::CONTENT_TYPE, "text/plain")
+            .body(Body::from(panic_to_string(err)))
+            .unwrap(),
+    }
+}
+
+fn panic_to_string(payload: Box<dyn Any + Send>) -> String {
+    if let Some(s) = payload.downcast_ref::<&str>() {
+        s.to_string()
+    } else if let Some(s) = payload.downcast_ref::<String>() {
+        s.to_string()
+    } else {
+        "unknown error".to_string()
+    }
 }
