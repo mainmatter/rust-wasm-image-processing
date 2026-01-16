@@ -27,20 +27,16 @@ async fn exercise_1(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl Into
 
 #[derive(Deserialize)]
 struct Exercise2Params {
-    do_one_thing: bool,
-    value: f32,
+    filter: String,
 }
 
 async fn exercise_2(
     Query(ImageUrl { image_url }): Query<ImageUrl>,
-    Query(Exercise2Params {
-        do_one_thing,
-        value,
-    }): Query<Exercise2Params>,
+    Query(Exercise2Params { filter }): Query<Exercise2Params>,
 ) -> impl IntoResponse {
-    println!("Called exercise_2 with: {image_url}, {do_one_thing}, {value}");
+    println!("Called exercise_2 with: {image_url}, {filter}");
     process_image(&image_url, move |photon_image| {
-        transformers::exercise_2::transform(photon_image, do_one_thing, value);
+        transformers::exercise_2::transform(photon_image, &filter);
     })
     .await
 }
