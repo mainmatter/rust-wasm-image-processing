@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="has-navbar-fixed-top">
     <head>
-        <link data-trunk rel="rust" />
         <link data-trunk rel="copy-file" href="../daisies.jpg" />
         <link data-trunk rel="copy-file" href="./mainmatter.svg" />
         <meta charset="utf-8" />
@@ -15,17 +14,18 @@
         <script>
             let defaultImageUrl = "/daisies.jpg";
 
-            document.addEventListener("DOMContentLoaded", async () => {
+            window.addEventListener("TrunkApplicationStarted", async () => {
+                console.log("ready");
                 document.querySelector("#imageUrl").value = defaultImageUrl;
-                imageData = await loadImage(defaultImageUrl);
                 triggerWasm("exercise_2");
             });
 
             async function triggerBackend(url, params) {
+                clearError();
                 let imageUrl = document.querySelector("#imageUrl").value;
 
                 if (!imageUrl) {
-                    console.error("must specify image");
+                    setError("must specify image");
                     return;
                 }
 
@@ -33,23 +33,34 @@
                     image_url: `${window.location.origin}${defaultImageUrl}`,
                     ...params,
                 }).toString();
+
                 let response = await fetch(`/api/${url}?${queryString}`);
-                let blob = await response.blob();
-                imageElement.src = URL.createObjectURL(blob);
+
+                if (response.ok) {
+                    let blob = await response.blob();
+                    imageElement.src = URL.createObjectURL(blob);
+                } else {
+                    setError(await response.text());
+                }
             }
 
             async function triggerWasm(endpoint, ...params) {
+                clearError();
                 let imageUrl = document.querySelector("#imageUrl").value;
 
                 if (!imageUrl) {
-                    console.error("must specify image");
+                    setError("must specify image");
                     return;
                 }
 
-                const imageData = await loadImage(imageUrl);
-                let output = wasmBindings[endpoint](imageData, ...params);
-                const blob = new Blob([output], { type: "image/jpeg" });
-                imageElement.src = URL.createObjectURL(blob);
+                try {
+                    const imageData = await loadImage(imageUrl);
+                    let output = wasmBindings[endpoint](imageData, ...params);
+                    const blob = new Blob([output], { type: "image/jpeg" });
+                    imageElement.src = URL.createObjectURL(blob);
+                } catch (err) {
+                    setError(err);
+                }
             }
 
             async function loadImage(imageUrl) {
@@ -57,7 +68,16 @@
                 let buffer = await response.arrayBuffer();
                 return new Uint8Array(buffer);
             }
+
+            function clearError() {
+                document.querySelector("#error").innerHTML = "";
+            }
+
+            function setError(error) {
+                document.querySelector("#error").innerHTML = error;
+            }
         </script>
+        <link data-trunk rel="rust" />
     </head>
     <body>
         <div class="tabbed">
@@ -191,6 +211,7 @@
         <section class="section">
             <div class="box">
                 <h2 class="is-size-4 has-text-weight-bold">Output</h2>
+                <div id="error" class="has-text-danger"></div>
                 <img id="imageElement" src="" />
             </div>
         </section>
