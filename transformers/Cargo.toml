@@ -1,0 +1,7 @@
+[package]
+name = "transformers"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+photon.workspace = true
