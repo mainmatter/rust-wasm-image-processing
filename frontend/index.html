@@ -13,7 +13,8 @@
         <link data-trunk rel="css" href="index.css" />
         <script data-trunk src="index.js"></script>
         <script>
-            let defaultImageUrl = "/daisies.jpg";
+            // let defaultImageUrl = `${window.location.origin}/daisies.jpg`;
+            let defaultImageUrl = `https://picsum.photos/800/600`;
 
             document.addEventListener("DOMContentLoaded", async () => {
                 document.querySelector("#imageUrl").value = defaultImageUrl;
@@ -30,7 +31,7 @@
                 }
 
                 const queryString = new URLSearchParams({
-                    image_url: `${window.location.origin}${defaultImageUrl}`,
+                    image_url: imageUrl,
                     ...params,
                 }).toString();
                 let response = await fetch(`/api/${url}?${queryString}`);
@@ -103,22 +104,21 @@
             </nav>
 
             <section class="section menu">
+                <div class="field">
+                    <div class="control">
+                        <input
+                            type="text"
+                            class="input"
+                            id="imageUrl"
+                            placeholder="URL of source image"
+                            required
+                            size="30"
+                        />
+                    </div>
+                </div>
                 <li class="ex1 box">
                     <h1 class="is-size-4 has-text-weight-bold">Exercise 1</h1>
                     <form class="block">
-                        <div class="field">
-                            <div class="control">
-                                <input
-                                    type="text"
-                                    class="input"
-                                    id="imageUrl"
-                                    placeholder="URL of source image"
-                                    required
-                                    size="30"
-                                />
-                            </div>
-                        </div>
-
                         <div class="field is-grouped">
                             <div class="control">
                                 <button
@@ -129,6 +129,23 @@
                                     Backend exercise 1
                                 </button>
                             </div>
+                            <div class="control">
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerWasm('exercise_1')"
+                                >
+                                    Wasm exercise 1
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="ex2 box">
+                    <h2>Exercise 2</h2>
+                    <form class="block">
+                        <div class="field is-grouped">
                             <div class="control">
                                 <button
                                     type="button"
@@ -147,15 +164,6 @@
                                 <button
                                     type="button"
                                     class="button is-link is-light"
-                                    onclick="triggerWasm('exercise_1')"
-                                >
-                                    Wasm exercise 1
-                                </button>
-                            </div>
-                            <div class="control">
-                                <button
-                                    type="button"
-                                    class="button is-link is-light"
                                     onclick="
                                         triggerWasm('exercise_2', false, 100)
                                     "
@@ -165,10 +173,6 @@
                             </div>
                         </div>
                     </form>
-                </li>
-
-                <li class="ex2 box">
-                    <h2>Exercise 2</h2>
                 </li>
 
                 <li class="ex3 box">
