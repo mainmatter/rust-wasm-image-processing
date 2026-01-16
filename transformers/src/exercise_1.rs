@@ -1,5 +1,6 @@
 use photon::PhotonImage;
 
-pub fn transform(img: &mut PhotonImage) {
-    photon::filters::dramatic(img);
+pub fn transform(mut img: PhotonImage) -> PhotonImage {
+    photon::filters::dramatic(&mut img);
+    img
 }

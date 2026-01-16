@@ -1,0 +1,4 @@
+cross-origin-embedder-policy: require-corp
+cross-origin-opener-policy: same-origin
+# not strictly required, just allows you to load assets from the same... subdomain IIRC.
+cross-origin-resource-policy: same-site

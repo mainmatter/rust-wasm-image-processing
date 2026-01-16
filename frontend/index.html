@@ -1,11 +1,18 @@
 <!doctype html>
 <html class="has-navbar-fixed-top">
     <head>
-        <link data-trunk rel="rust" />
-        <link data-trunk rel="copy-file" href="../daisies.jpg" />
-        <link data-trunk rel="copy-file" href="./mainmatter.svg" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            data-trunk
+            rel="rust"
+            href="Cargo.toml"
+            data-wasm-opt="z"
+            data-bindgen-target="web"
+            data-initializer="initializers.mjs"
+        />
+        <link data-trunk rel="copy-file" href="./mainmatter.svg" />
+        <link data-trunk rel="copy-file" href="_headers" />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
@@ -203,14 +210,28 @@
 
                 <li class="ex4 box">
                     <h2>Exercise 4</h2>
-                </li>
-
-                <li class="ex5 box">
-                    <h2>Exercise 5</h2>
-                </li>
-
-                <li class="ex6 box">
-                    <h2>Exercise 6</h2>
+                    <form class="block">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerBackend('exercise_4')"
+                                >
+                                    Backend exercise 4
+                                </button>
+                            </div>
+                            <div class="control">
+                                <button
+                                    type="button"
+                                    class="button is-link is-light"
+                                    onclick="triggerWasm('exercise_4')"
+                                >
+                                    Wasm exercise 4
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </li>
             </section>
         </div>

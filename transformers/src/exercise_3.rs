@@ -3,7 +3,7 @@ use photon::transform::{SamplingFilter, resize};
 
 /// Creates a thumbnail strip by resizing the image to multiple widths
 /// and stitching them together horizontally.
-pub fn transform(img: &PhotonImage, widths: &[u32]) -> PhotonImage {
+pub fn transform(img: PhotonImage, widths: &[u32]) -> PhotonImage {
     // First, resize the image for each width in the slice
     let mut thumbnails = Vec::new();
 
@@ -13,7 +13,7 @@ pub fn transform(img: &PhotonImage, widths: &[u32]) -> PhotonImage {
         let height = (*width as f32 * aspect_ratio) as u32;
 
         // Resize and collect
-        let thumbnail = resize(img, *width, height, SamplingFilter::Nearest);
+        let thumbnail = resize(&img, *width, height, SamplingFilter::Nearest);
         thumbnails.push(thumbnail);
     }
 
