@@ -1,6 +1,9 @@
+use std::panic;
 use wasm_bindgen::prelude::*;
 
-fn main() {}
+fn main() {
+    panic::set_hook(Box::new(console_error_panic_hook::hook));
+}
 
 #[wasm_bindgen]
 pub fn exercise_1(image_data: &[u8]) -> Vec<u8> {

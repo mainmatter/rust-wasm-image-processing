@@ -1,0 +1,40 @@
+.tabbed section.menu { 
+  list-style-type: none;
+}
+
+.tabbed > input,
+.tabbed section.menu li {
+  display: none;
+}
+
+nav.navbar {
+  --bulma-navbar-burger-color: #6237ef;
+}
+
+nav label {
+  cursor: pointer;
+}
+
+#ex1:checked ~ section.menu .ex1,
+#ex2:checked ~ section.menu .ex2,
+#ex3:checked ~ section.menu .ex3,
+#ex4:checked ~ section.menu .ex4,
+#ex5:checked ~ section.menu .ex5,
+#ex6:checked ~ section.menu .ex6 {
+  display: block;
+}
+
+nav label {
+  border-bottom: 5px solid transparent;
+  transition: border-bottom 250ms ease-in-out;
+}
+
+nav label:hover,
+#ex1:checked ~ nav label[for="ex1"],
+#ex2:checked ~ nav label[for="ex2"],
+#ex3:checked ~ nav label[for="ex3"],
+#ex4:checked ~ nav label[for="ex4"],
+#ex5:checked ~ nav label[for="ex5"],
+#ex6:checked ~ nav label[for="ex6"] {
+  border-bottom: 5px solid var(--bulma-navbar-burger-color);
+}
