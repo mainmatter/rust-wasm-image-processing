@@ -3,6 +3,9 @@ name = "frontend"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 photon.workspace = true
 transformers.workspace = true

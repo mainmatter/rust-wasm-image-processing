@@ -26,8 +26,9 @@
             # compilers
             rustToolchain
 
-            trunk
             watchexec
+            mdbook
+            wasm-pack
           ];
 
           LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";

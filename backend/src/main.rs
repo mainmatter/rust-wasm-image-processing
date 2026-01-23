@@ -1,16 +1,24 @@
 use axum::{Router, extract::Query, http::header, response::IntoResponse, routing::get};
 use photon::PhotonImage;
 use serde::Deserialize;
+use std::net::SocketAddr;
+use tower_http::trace::TraceLayer;
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new()
-        .route("/api/exercise_1", get(exercise_1))
-        .route("/api/exercise_2", get(exercise_2))
-        .route("/api/exercise_3", get(exercise_3))
-        .route("/api/exercise_4", get(exercise_4));
+    tracing_subscriber::fmt().init();
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let app = Router::new()
+        .route("/exercise_1", get(exercise_1))
+        .route("/exercise_2", get(exercise_2))
+        .route("/exercise_3", get(exercise_3))
+        .route("/exercise_4", get(exercise_4))
+        .layer(TraceLayer::new_for_http());
+
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3001));
+    tracing::info!("Starting server on {}", addr);
+
+    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
 
@@ -19,8 +27,9 @@ struct ImageUrl {
     image_url: String,
 }
 
+#[tracing::instrument]
 async fn exercise_1(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
-    println!("Called exercise_1 with: {image_url}");
+    tracing::info!("Called exercise_1 with: {image_url}");
     process_image(&image_url, move |photon_image| {
         transformers::exercise_1::transform(photon_image)
     })
@@ -29,26 +38,24 @@ async fn exercise_1(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl Into
 
 #[derive(Deserialize)]
 struct Exercise2Params {
-    do_one_thing: bool,
-    value: f32,
+    filter: String,
 }
 
+#[tracing::instrument]
 async fn exercise_2(
     Query(ImageUrl { image_url }): Query<ImageUrl>,
-    Query(Exercise2Params {
-        do_one_thing,
-        value,
-    }): Query<Exercise2Params>,
+    Query(Exercise2Params { filter }): Query<Exercise2Params>,
 ) -> impl IntoResponse {
-    println!("Called exercise_2 with: {image_url}, {do_one_thing}, {value}");
+    tracing::info!("Called exercise_2 with: {image_url}, {filter}");
     process_image(&image_url, move |photon_image| {
-        transformers::exercise_2::transform(photon_image, do_one_thing, value)
+        transformers::exercise_2::transform(photon_image, &filter)
     })
     .await
 }
 
+#[tracing::instrument]
 async fn exercise_3(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
-    println!("Called exercise_3 with: {image_url}");
+    tracing::info!("Called exercise_3 with: {image_url}");
     process_image(&image_url, move |photon_image| {
         let widths = [50, 100, 200, 400, 800, 1600];
         transformers::exercise_3::transform(photon_image, &widths)
@@ -56,8 +63,9 @@ async fn exercise_3(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl Into
     .await
 }
 
+#[tracing::instrument]
 async fn exercise_4(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
-    println!("Called exercise_4 with: {image_url}");
+    tracing::info!("Called exercise_4 with: {image_url}");
     process_image(&image_url, move |photon_image| {
         let widths = [50, 100, 200, 400, 800, 1600];
         transformers::exercise_4::transform(photon_image, &widths)
@@ -76,5 +84,12 @@ where
     let output_image = f(photon_image);
 
     let output = output_image.get_bytes_jpeg(80);
-    ([(header::CONTENT_TYPE, "image/jpeg")], output)
+    (
+        [
+            (header::CONTENT_TYPE, "image/jpeg"),
+            (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
+            (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
+        ],
+        output,
+    )
 }
