@@ -34,11 +34,11 @@ But wait, what's that `&str` type? If you're coming from JavaScript, you might e
 
 ## String Slices: `&str` vs `String`
 
-In JavaScript, and most other languages that use garbage collection, there's only one string type. You create strings, pass them around, and the runtime figures out when to free the memory. Rust takes a different approach—one that gives you more control and in-turn allows for higher performance code.
+In JavaScript, and most other languages that use garbage collection, there's only one string type. You create strings, pass them around, and the runtime figures out when to free the memory. Rust takes a different approach — one that gives you more control and in-turn allows for higher performance code.
 
 ### Ownership: Who's Responsible for This Data?
 
-In Rust, every value has exactly one **owner**—the variable responsible for that data. When the owner goes out of scope (like when a function returns), Rust automatically frees the memory. No garbage collector needed.
+In Rust, every value has exactly one **owner** — the variable responsible for that data. When that owner goes out of scope (like when a function returns), Rust automatically frees the memory. No garbage collector needed.
 
 Think of it like checking out a library book. When you check out a book, you're responsible for it. You can read it, give it to a friend (but then they're responsible for it), or return it. The library (in this case the compiler) always knows exactly who has each book,
 and unlike a real library can make sure borrowers _always_ return their books when they are done with them.
@@ -65,7 +65,7 @@ fn main() {
 
 fn other_function(name: String) {
     // ... use name ...
-    // because we took ownership, `name` goes out of scope here, memory is automatically freed
+    // because we took ownership, `name` goes out of scope here, and memory is automatically freed
 }
 ```
 
@@ -106,7 +106,7 @@ When you write a string literal like `"cali"` in your code, its type is `&str`. 
 
 ### Why Our Function Uses `&str`
 
-Look at our function signature again:
+Let's look at our function signature again:
 
 ```rust,noplayground
 pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage
@@ -139,9 +139,9 @@ pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage {
 
 Each line inside the `match` is called an **arm**: a pattern on the left, code to run on the right, separated by `=>`. The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
 
-Unlike JavaScript's `switch`, there's no fall-through and no `break` needed—each arm is self-contained. More importantly, Rust **requires** you to handle every possible case. Try removing the `_ => panic!(...)` line and the compiler will reject your code:
+Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — each arm is self-contained. More importantly, Rust **requires** you to handle every possible case. Try removing the `_ => panic!(...)` line and the compiler will reject your code:
 
-```
+```text
 error[E0004]: non-exhaustive patterns: `&_` not covered
 ```
 
@@ -189,4 +189,4 @@ You'll want to support several filters from the [photon filters module](https://
 
 ## What's Next?
 
-You've learned how `match` gives you type-safe branching with exhaustiveness checking—the compiler ensures you never forget a case. In the next exercise, we'll explore another powerful feature of Rust _arrays_, _loops_, and _iterators_.
+You've learned how `match` gives you type-safe branching with exhaustiveness checking—the compiler ensures you never forget a case. In the next exercise, we'll explore some other powerful Rust features: _arrays_, _loops_, and _iterators_.
