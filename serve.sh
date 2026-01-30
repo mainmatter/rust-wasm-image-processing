@@ -1,6 +1,30 @@
 #!/bin/sh
 
-watchexec --watch transformers --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript && mdbook serve frontend' &
+command -v rustup >/dev/null 2>&1 || {
+  echo "'rustup' appears to be missing. Please refer to the installation instructions in README.md." >&2
+  exit 1
+}
+
+if ! rustup target list --installed | grep -qx 'wasm32-unknown-unknown'; then
+  echo "Rust target 'wasm32-unknown-unknown' appears to be missing. Please refer to the installation instructions in README.md." >&2
+  exit 1
+fi
+
+command -v mdbook >/dev/null 2>&1 || {
+  echo "'mdbook' appears to be missing. Please refer to the installation instructions in README.md." >&2
+  exit 1
+}
+
+command -v wasm-pack >/dev/null 2>&1 || {
+  echo "'wasm-pack' appears to be missing. Please refer to the installation instructions in README.md." >&2
+  exit 1
+}
+
+command -v watchexec >/dev/null 2>&1 || {
+  echo "'watchexec' appears to be missing. Please refer to the installation instructions in README.md." >&2
+  exit 1
+}
+
 watchexec --watch transformers --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --dev && mdbook serve frontend' &
 watchexec --watch transformers -r cargo run --bin backend
 
