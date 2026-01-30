@@ -1,5 +1,5 @@
 {
-  description = "Flake providing a development shell for the Contentful Wasm Workshop";
+  description = "Flake providing a development shell for the Rust & WebAssembly Image Processing Workshop";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -21,7 +21,7 @@
       in
       {
         devShells.default = with pkgs; mkShell rec {
-          name = "contentful-wasm-workshop";
+          name = "rust-wasm-image-processing";
           buildInputs = [
             # compilers
             rustToolchain
