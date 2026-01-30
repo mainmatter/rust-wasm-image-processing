@@ -49,21 +49,17 @@ WebAssembly can now use multiple threads. This means CPU-intensive tasks like im
 This is similar to JavaScript's `.reduce()`, but designed for parallel execution. It takes pairs of results and combines them until only one remains—perfect for stitching images together.
 
 <div class="workshop-exercise">
-
-<input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
-
-<div class="workshop-buttons">
-<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_4', {})">
-Backend
-</button>
-<button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_4')">
-Wasm
-</button>
-</div>
-
-<div class="workshop-output">
-<h4>Output</h4>
-<img id="imageOutput" src="" alt="Transformed image will appear here" />
-</div>
-
+    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <div class="workshop-buttons">
+        <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_4', {})">
+            Backend
+        </button>
+        <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_4')">
+            Wasm
+        </button>
+    </div>
+    <div class="workshop-output">
+        <h4>Output</h4>
+        <img id="imageOutput" src="" alt="Transformed image will appear here" />
+    </div>
 </div>

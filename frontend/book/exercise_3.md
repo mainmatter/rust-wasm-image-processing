@@ -43,22 +43,18 @@ This works like JavaScript's `for...of` loop and Rust automatically handles the 
 The exercise manually copies pixels between images. Don't worry about memorizing this — it's showing you that Rust gives you low-level control when you need it, while still keeping you safe from memory bugs.
 
 <div class="workshop-exercise">
-
-<input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
-<input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
-
-<div class="workshop-buttons">
-<button class="workshop-btn workshop-btn-backend" onclick="triggerBackendExercise3()">
-Backend
-</button>
-<button class="workshop-btn workshop-btn-wasm" onclick="triggerWasmExercise3()">
-Wasm
-</button>
-</div>
-
-<div class="workshop-output">
-<h4>Output</h4>
-<img id="imageOutput" src="" alt="Transformed image will appear here" />
-</div>
-
+    <input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <div class="workshop-buttons">
+        <button class="workshop-btn workshop-btn-backend" onclick="triggerBackendExercise3()">
+            Backend
+        </button>
+        <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasmExercise3()">
+            Wasm
+        </button>
+    </div>
+    <div class="workshop-output">
+        <h4>Output</h4>
+        <img id="imageOutput" src="" alt="Transformed image will appear here" />
+    </div>
 </div>
