@@ -123,6 +123,7 @@ name = "backend"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "exercises",
  "photon-rs",
  "reqwest",
  "serde",
@@ -130,7 +131,6 @@ dependencies = [
  "tower-http",
  "tracing",
  "tracing-subscriber",
- "transformers",
 ]
 
 [[package]]
@@ -405,6 +405,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "exercises"
+version = "0.1.0"
+dependencies = [
+ "log",
+ "photon-rs",
+ "rayon",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "fdeflate"
 version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -459,9 +469,9 @@ version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
  "console_log",
+ "exercises",
  "log",
  "photon-rs",
- "transformers",
  "wasm-bindgen",
  "wasm-bindgen-rayon",
 ]
@@ -2216,16 +2226,6 @@ dependencies = [
  "tracing",
  "tracing-core",
  "tracing-log",
-]
-
-[[package]]
-name = "transformers"
-version = "0.1.0"
-dependencies = [
- "log",
- "photon-rs",
- "rayon",
- "wasm-bindgen",
 ]
 
 [[package]]

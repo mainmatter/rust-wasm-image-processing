@@ -1,9 +1,9 @@
 [workspace]
 resolver = "3"
-members = ["backend", "frontend", "transformers"]
+members = ["backend", "exercises", "frontend"]
 
 [workspace.dependencies]
-transformers = { version = "0.1.0", path = "./transformers" }
+exercises = { version = "0.1.0", path = "./exercises" }
 
 axum = "0.8.8"
 photon = { package = "photon-rs", version = "0.3.3" }
