@@ -25,8 +25,8 @@ if ! command -v watchexec >/dev/null 2>&1; then
   exit 1
 fi
 
-# We must use 127.0.0.1 as hostname for this to work in a dev container.
-watchexec --watch exercises --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve --hostname 127.0.0.1 frontend' &
+# We must use 0.0.0.0 as hostname for this to work in a dev container.
+watchexec --watch exercises --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve --hostname 0.0.0.0 -p 3000 frontend' &
 watchexec --watch exercises --watch backend/src -r cargo run --bin backend
 
 wait
