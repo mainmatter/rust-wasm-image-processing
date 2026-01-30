@@ -137,10 +137,7 @@ pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage {
 }
 ```
 
-<<<<<<< conflict 1 of 2
-%%%%%%% diff from: vlytllxs 07223f97 "improve text" (rebased revision)
-\\\\\\\ to: vlytllxs 879d5367 "improve text" (rebase destination)
-Each line inside the `match` is called an **arm**: a pattern on the left, code to run on the right, separated by `=>`. The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
+The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
 
 Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — each arm is self-contained. More importantly, Rust **requires** you to handle every possible case. Try removing the `_ => panic!(...)` line and the compiler will reject your code:
 
