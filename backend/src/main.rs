@@ -9,6 +9,7 @@ async fn main() {
     tracing_subscriber::fmt().init();
 
     let app = Router::new()
+        .route("/ping", get(ping))
         .route("/exercise_1", get(exercise_1))
         .route("/exercise_2", get(exercise_2))
         .route("/exercise_3", get(exercise_3))
@@ -20,6 +21,12 @@ async fn main() {
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
+}
+
+#[tracing::instrument]
+async fn ping() -> impl IntoResponse {
+    tracing::info!("Called ping");
+    "Pong!"
 }
 
 #[derive(Deserialize)]
