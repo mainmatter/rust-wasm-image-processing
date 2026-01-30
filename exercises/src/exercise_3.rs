@@ -1,53 +1,39 @@
 use photon::PhotonImage;
-use photon::transform::{SamplingFilter, resize};
 
-/// Creates a thumbnail strip by resizing the image to multiple widths
-/// and stitching them together horizontally.
-pub fn transform(img: PhotonImage, widths: &[u32]) -> PhotonImage {
-    // First, resize the image for each width in the slice
-    let mut thumbnails = Vec::new();
+/// Stitches two image together horizontally.
+pub fn transform(left: PhotonImage, right: PhotonImage) -> PhotonImage {
+    assert!(left.get_width() > 0);
+    assert!(right.get_width() > 0);
 
-    for width in widths {
-        // Calculate height to maintain aspect ratio
-        let aspect_ratio = img.get_height() as f32 / img.get_width() as f32;
-        let height = (*width as f32 * aspect_ratio) as u32;
+    let new_width = left.get_width() + right.get_width();
+    let new_height = left.get_height().max(right.get_height());
 
-        // Resize and collect
-        let thumbnail = resize(&img, *width, height, SamplingFilter::Nearest);
-        thumbnails.push(thumbnail);
-    }
+    let mut pixels = vec![255u8; (new_width * new_height * 4) as usize];
 
-    // Calculate dimensions for the final composite image
-    let total_width: u32 = thumbnails.iter().map(|t| t.get_width()).sum();
-    let max_height: u32 = thumbnails.iter().map(|t| t.get_height()).max().unwrap_or(0);
+    // Copy left image
+    copy_into(&mut pixels, new_width, &left, 0);
 
-    // Create a new pixel buffer (RGBA = 4 bytes per pixel)
-    let mut composite_pixels = vec![255u8; (total_width * max_height * 4) as usize];
+    // Copy right image
+    copy_into(&mut pixels, new_width, &right, left.get_width());
 
-    // Copy each thumbnail into the composite at the right position
-    let mut x_offset: u32 = 0;
+    PhotonImage::new(pixels, new_width, new_height)
+}
 
-    for thumbnail in &thumbnails {
-        let thumb_pixels = thumbnail.get_raw_pixels();
-        let thumb_width = thumbnail.get_width();
-        let thumb_height = thumbnail.get_height();
+/// Copies an image into a pixel buffer at a given x offset
+fn copy_into(dst: &mut [u8], dst_width: u32, src: &PhotonImage, x_offset: u32) {
+    let src_pixels = src.get_raw_pixels();
+    let src_width = src.get_width();
+    let src_height = src.get_height();
 
-        // Copy row by row
-        for y in 0..thumb_height {
-            for x in 0..thumb_width {
-                let src_idx = ((y * thumb_width + x) * 4) as usize;
-                let dst_idx = ((y * total_width + x_offset + x) * 4) as usize;
+    for y in 0..src_height {
+        for x in 0..src_width {
+            let src_idx = ((y * src_width + x) * 4) as usize;
+            let dst_idx = ((y * dst_width + x_offset + x) * 4) as usize;
 
-                // Copy RGBA
-                composite_pixels[dst_idx] = thumb_pixels[src_idx];
-                composite_pixels[dst_idx + 1] = thumb_pixels[src_idx + 1];
-                composite_pixels[dst_idx + 2] = thumb_pixels[src_idx + 2];
-                composite_pixels[dst_idx + 3] = thumb_pixels[src_idx + 3];
-            }
+            dst[dst_idx] = src_pixels[src_idx];
+            dst[dst_idx + 1] = src_pixels[src_idx + 1];
+            dst[dst_idx + 2] = src_pixels[src_idx + 2];
+            dst[dst_idx + 3] = src_pixels[src_idx + 3];
         }
-
-        x_offset += thumb_width;
     }
-
-    PhotonImage::new(composite_pixels, total_width, max_height)
 }
