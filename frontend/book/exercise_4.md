@@ -63,3 +63,5 @@ This is similar to JavaScript's `.reduce()`, but designed for parallel execution
         <img id="imageOutput" src="" alt="Transformed image will appear here" />
     </div>
 </div>
+
+{{#include includes/error-flash.html}}

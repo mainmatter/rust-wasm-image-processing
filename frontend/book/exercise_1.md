@@ -75,3 +75,5 @@ check how they affect the image.
 ## What's Next?
 
 You've implemented your first Rust function, that was easy wasn't it? Next, we'll look at a more interesting problem, *match*ing user input, strings, and ownership.
+
+{{#include includes/error-flash.html}}

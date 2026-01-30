@@ -1,19 +1,35 @@
-window.triggerBackend = async function triggerBackend(url, params) {
-  let imageUrl = document.querySelector("#imageUrl").value;
-  let imageElement = document.querySelector("#imageOutput");
-
-  if (!imageUrl) {
-    console.error("must specify image");
-    return;
+async function perform(what) {
+  try {
+    await what();
+  } catch (error) {
+    const errorFlash = document.querySelector("#error-flash");
+    errorFlash.querySelector("#trace").innerHTML = error.stack;
+    errorFlash.querySelector("#error-flash-close-button").addEventListener("click", () => {
+      errorFlash.close();
+    });
+    errorFlash.showModal();
   }
+}
 
-  const queryString = new URLSearchParams({
-    image_url: imageUrl,
-    ...params,
-  }).toString();
-  let response = await fetch(`http://localhost:3001/${url}?${queryString}`);
-  let blob = await response.blob();
-  imageElement.src = URL.createObjectURL(blob);
+window.triggerBackend = async function triggerBackend(url, params) {
+  perform(async () => {
+    throw new Error("fehl");
+    let imageUrl = document.querySelector("#imageUrl").value;
+    let imageElement = document.querySelector("#imageOutput");
+    
+    if (!imageUrl) {
+      console.error("must specify image");
+      return;
+    }
+    
+    const queryString = new URLSearchParams({
+      image_url: imageUrl,
+      ...params,
+    }).toString();
+    let response = await fetch(`http://localhost:3001/${url}?${queryString}`);
+    let blob = await response.blob();
+    imageElement.src = URL.createObjectURL(blob);
+  })
 };
 
 window.triggerWasm = async function triggerWasm(endpoint, ...params) {

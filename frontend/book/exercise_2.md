@@ -215,3 +215,5 @@ You'll want to support several filters from the [photon filters module](https://
 ## What's Next?
 
 You've learned how `match` gives you type-safe branching with exhaustiveness checking—the compiler ensures you never forget a case. In the next exercise, we'll explore some other powerful Rust features: _arrays_, _loops_, and _iterators_.
+
+{{#include includes/error-flash.html}}

@@ -58,3 +58,5 @@ The exercise manually copies pixels between images. Don't worry about memorizing
         <img id="imageOutput" src="" alt="Transformed image will appear here" />
     </div>
 </div>
+
+{{#include includes/error-flash.html}}
