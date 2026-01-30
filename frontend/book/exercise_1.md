@@ -6,9 +6,9 @@ In this exercise, you'll write your first Rust function—a simple image transfo
 
 ### What you'll learn
 
-- **External crates**: How to use external crates.
 - **Function signatures**: How Rust functions declare their inputs and outputs.
 - **Mutability**: The difference between `mut` and immutable values.
+- **Rust Crates**: How to install and use 3rd party packages.
 
 </div>
 
