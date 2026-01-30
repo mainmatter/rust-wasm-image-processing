@@ -100,7 +100,7 @@ fn other_function(name: &str) {
 Now we can understand the two string types:
 
 - `String` — An **owned** string. The variable holding it is responsible for the memory and can modify its contents.
-- `&str` — An **immutable reference** to string data. It borrows the string without owning it. It cannnot manipulate the string, only read from it.
+- `&str` — An **immutable reference** to string data. It borrows the string without owning it. It cannot manipulate the string, only read from it.
 
 When you write a string literal like `"cali"` in your code, its type is `&str`. The text is _baked_ into your compiled program, and you get a reference to it.
 
@@ -120,7 +120,7 @@ We use `&str` for the filter name because:
 
 3. **It's more efficient** — Passing a reference is cheap (it's just a pointer). Passing an owned `String` would require either moving ownership or cloning the data.
 
-As a rule of thumb: **use `&str` when you just need to read string data**. Only use `String` or `&mut str` when you absolurely know you need to own or modify the string.
+As a rule of thumb: **use `&str` when you just need to read string data**. Only use `String` or `&mut str` when you absolutely know you need to own or modify the string.
 
 ## Introducing `match`
 
@@ -136,6 +136,34 @@ pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage {
     img
 }
 ```
+
+<<<<<<< conflict 1 of 2
+%%%%%%% diff from: vlytllxs 07223f97 "improve text" (rebased revision)
+\\\\\\\ to: vlytllxs 879d5367 "improve text" (rebase destination)
+Each line inside the `match` is called an **arm**: a pattern on the left, code to run on the right, separated by `=>`. The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
+
+Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — each arm is self-contained. More importantly, Rust **requires** you to handle every possible case. Try removing the `_ => panic!(...)` line and the compiler will reject your code:
+
+```text
+error[E0004]: non-exhaustive patterns: `&_` not covered
+```
+
+This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro crashes the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
+
+## Your Task
+
+👉 Open `exercises/src/exercise_2.rs` and implement the `transform` function using `match`.
+
+You'll want to support several filters from the [photon filters module](https://docs.rs/photon-rs/latest/photon_rs/filters/index.html). Here are some to get you started:
+
+- `"cali"` → `photon::filters::cali(&mut img)`
+- `"dramatic"` → `photon::filters::dramatic(&mut img)`
+- `"duotone_horizon"` → `photon::filters::duotone_horizon(&mut img)`
+- `"lofi"` → `photon::filters::lofi(&mut img)`
+- `"golden"` → `photon::filters::golden(&mut img)`
+- `"pastel_pink"` → `photon::filters::pastel_pink(&mut img)`
+
+👉 Test your implementation using the buttons below. Try different filter names!
 
 Each line inside the `match` is called an **arm**: a pattern on the left, code to run on the right, separated by `=>`. The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
 
