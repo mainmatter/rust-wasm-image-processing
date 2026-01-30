@@ -1,10 +1,21 @@
 # Contentful Wasm Workshop
 
+## Dev setup
 
-# Dev dependencies
+There are three main supported ways:
 
-- Rust should be installed using [rustup](https://rustup.rs/)
-- After that add the Wasm target: `rustup target add wasm32-unknown-unknown`
-- Install the following tools:
-  - trunk (e.g. through `cargo install --locked trunk`)
-  - watchexec (e.g. through `cargo install --locked watchexec-cli`)
+### Dev container
+
+A pre-maid dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
+
+### Manual setup
+
+1. Install Rustup as described here https://rustup.rs/
+1. Add the Wasm target, `rustup target add wasm32-unknown-unknown`
+1. Install mdbook, `cargo install --locked mdbook`
+1. Install wasm-pack, `cargo install --locked wasm-pack`
+1. Install watchexec, `cargo install --locked watchexec-cli`
+
+### Nix flake
+
+If you are already comfortable with using Nix flakes, one is available at `./flake.nix`.
