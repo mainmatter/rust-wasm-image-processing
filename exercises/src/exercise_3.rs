@@ -30,10 +30,9 @@ fn copy_into(dst: &mut [u8], dst_width: u32, src: &PhotonImage, x_offset: u32) {
             let src_idx = ((y * src_width + x) * 4) as usize;
             let dst_idx = ((y * dst_width + x_offset + x) * 4) as usize;
 
-            dst[dst_idx] = src_pixels[src_idx];
-            dst[dst_idx + 1] = src_pixels[src_idx + 1];
-            dst[dst_idx + 2] = src_pixels[src_idx + 2];
-            dst[dst_idx + 3] = src_pixels[src_idx + 3];
+            for i in 0..4 {
+                dst[dst_idx + i] = src_pixels[src_idx + i];
+            }
         }
     }
 }
