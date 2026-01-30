@@ -1,5 +1,7 @@
 [target.wasm32-unknown-unknown]
 rustflags = [
+  "-A",
+  "warnings",
   "-C",
   "target-feature=+atomics,+bulk-memory",
   "-C",
