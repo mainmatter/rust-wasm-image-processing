@@ -205,9 +205,10 @@ You'll want to support several filters from the [photon filters module](https://
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_2', document.getElementById('filterSelect').value)">
             Wasm
         </button>
+        {{#include includes/spinner.svg}}
     </div>
     <div class="workshop-output">
-        <h4>Output</h4>
+        <h4>Output <span id="timing-info"></span></h4>
         <img id="imageOutput" src="" alt="Transformed image will appear here" />
     </div>
 </div>

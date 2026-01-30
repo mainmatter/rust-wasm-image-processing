@@ -1,6 +1,18 @@
 async function perform(what) {
+  const loading = document.querySelector("#loading");
+  loading.style.display = "block";
+  const timingInfo = document.querySelector("#timing-info");
+  timingInfo.innerHTML = "";
+  let imageElement = document.querySelector("#imageOutput");
+  imageElement.src = "";
+
   try {
+    const now = performance.now();    
     await what();
+    const later = performance.now();
+    const ms = Math.round(later - now);
+    
+    timingInfo.innerHTML = `(${ms}ms)`;
   } catch (error) {
     const errorFlash = document.querySelector("#error-flash");
     errorFlash.querySelector("#trace").innerHTML = error.stack;
@@ -8,6 +20,8 @@ async function perform(what) {
       errorFlash.close();
     });
     errorFlash.showModal();
+  } finally {
+    loading.style.display = "none";
   }
 }
 

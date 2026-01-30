@@ -166,6 +166,10 @@
   height: fit-content;
 }
 
-.error-flash__close-button {
-  
+#timing-info {
+  font-family: var(--mono-font);
+}
+
+#loading {
+  display: none;
 }
