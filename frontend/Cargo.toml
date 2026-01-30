@@ -3,8 +3,16 @@ name = "frontend"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 photon.workspace = true
 transformers.workspace = true
 wasm-bindgen.workspace = true
+wasm-bindgen-rayon = "1.2"
 console_error_panic_hook = "0.1.7"
+console_log = { version = "1.0.0", features = ["color"] }
+log = "0.4.22"
+# wasm_thread = "0.3.0"
+# rayon = "1.8"

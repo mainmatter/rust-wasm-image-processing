@@ -26,26 +26,9 @@
             # compilers
             rustToolchain
 
-            trunk
-
-
-            # clang
-
-            # # devtools
-            # just
-            # mdbook
-            # socat
-            # wabt
-            # dtc
-            # cargo-nextest
-            # cargo-fuzz
-            # cargo-deny
-            # typos
-            # wasm-tools
-            # jujutsu
-
-            # # for testing the kernel
-            # qemu
+            watchexec
+            mdbook
+            wasm-pack
           ];
 
           LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";

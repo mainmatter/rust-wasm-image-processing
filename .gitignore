@@ -2,3 +2,4 @@ frontend/dist
 target
 .DS_Store
 dist
+mdbook_dist
