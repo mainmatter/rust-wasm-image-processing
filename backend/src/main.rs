@@ -1,7 +1,7 @@
 use axum::{Router, extract::Query, http::header, response::IntoResponse, routing::get};
 use photon::PhotonImage;
 use serde::Deserialize;
-use std::net::SocketAddr;
+use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use tower_http::trace::TraceLayer;
 
 #[tokio::main]
@@ -16,8 +16,9 @@ async fn main() {
         .route("/exercise_4", get(exercise_4))
         .layer(TraceLayer::new_for_http());
 
-    // We must use 127.0.0.1 as hostname for this to work in a dev container.
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3001));
+    // We must use 0.0.0.0 as hostname for this to work in a dev container.
+    let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::UNSPECIFIED), 3001);
+
     tracing::info!("Starting server on {}", addr);
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();

@@ -2,10 +2,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "forwardPorts": [
-    3000,
-    3001
-  ],
+  "appPort": [3000, 3001],
   "portsAttributes": {
     "3000": {
       "label": "Frontend"
