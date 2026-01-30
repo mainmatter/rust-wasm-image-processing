@@ -27,6 +27,6 @@ fi
 
 # We must use 127.0.0.1 as hostname for this to work in a dev container.
 watchexec --watch exercises --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve --hostname 127.0.0.1 frontend' &
-watchexec --watch exercises -r cargo run --bin backend
+watchexec --watch exercises --watch backend/src -r cargo run --bin backend
 
 wait
