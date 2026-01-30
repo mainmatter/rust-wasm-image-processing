@@ -1,5 +1,4 @@
 use photon::PhotonImage;
-use photon::filters::lofi;
 use photon::transform::{SamplingFilter, resize};
 use rayon::prelude::*;
 
@@ -21,15 +20,8 @@ pub fn transform(img: PhotonImage, widths: &[u32]) -> PhotonImage {
             let aspect_ratio = img.get_height() as f32 / img.get_width() as f32;
             let height = (*width as f32 * aspect_ratio) as u32;
 
-            log::debug!("resizing on thread");
-
             // Resize the image
             resize(&img, *width, height, SamplingFilter::Nearest)
-        })
-        .map(|mut image| {
-            // Apply color filter
-            lofi(&mut image);
-            image
         })
         .reduce_with(|left, right| {
             assert!(left.get_width() > 0);
@@ -50,11 +42,6 @@ pub fn transform(img: PhotonImage, widths: &[u32]) -> PhotonImage {
         })
         .unwrap()
 }
-
-// /// Stitches images horizontally using parallel fold + reduce
-// fn stitch_horizontal(images: impl ParallelIterator<Item = PhotonImage>) -> PhotonImage {
-//     images.reduce(|| PhotonImage::new(vec![], 0, 0), |left, right| {})
-// }
 
 /// Copies an image into a pixel buffer at a given x offset
 fn copy_into(dst: &mut [u8], dst_width: u32, src: &PhotonImage, x_offset: u32) {

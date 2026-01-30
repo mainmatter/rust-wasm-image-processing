@@ -97,6 +97,21 @@ fn other_function(name: &str) {
 }
 ```
 
+> Aside: Rust enforces one critical rule: at any given time, you can have _either_ multiple immutable references _or_ one mutable reference, but **never both**.
+>
+> If you attempt to violate this (by having multiple mutable references to the same piece of data) your program will not compile.
+>
+> ```rust,compile_fail
+> let mut name = String::from("cali");
+> let b = &name;
+> update_name(&mut name);
+> println!("{b}");
+>
+> fn update_name(name: &mut str) {
+>   // ... modifies the name here ...
+> }
+> ```
+
 Now we can understand the two string types:
 
 - `String` — An **owned** string. The variable holding it is responsible for the memory and can modify its contents.
@@ -199,7 +214,7 @@ You'll want to support several filters from the [photon filters module](https://
     <option value="pastel_pink">pastel_pink</option>
     </select>
     <div class="workshop-buttons">
-        <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_2', { filter: document.getElementById('filterSelect').value })">
+        <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_2', new URLSearchParams({ filter: document.getElementById('filterSelect').value }))">
             Backend
         </button>
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_2', document.getElementById('filterSelect').value)">
