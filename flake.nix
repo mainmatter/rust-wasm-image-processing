@@ -32,9 +32,6 @@
 
             dprint
           ];
-
-          LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
-          LD_LIBRARY_PATH = "${lib.makeLibraryPath buildInputs}";
         };
       }
     );
