@@ -29,10 +29,10 @@ If you've used JavaScript's `.map()` and `.reduce()`, this will feel familiar. T
 
 The `|width| { ... }` syntax defines a **closure**—an anonymous function. It's equivalent to JavaScript's arrow functions:
 
-| JavaScript                | Rust                          |
-|---------------------------|-------------------------------|
-| `(x) => x * 2`            | `\|x\| x * 2`                 |
-| `(x, y) => { return x + y }` | `\|x, y\| { x + y }`       |
+| JavaScript                   | Rust                 |
+| ---------------------------- | -------------------- |
+| `(x) => x * 2`               | `\|x\| x * 2`        |
+| `(x, y) => { return x + y }` | `\|x, y\| { x + y }` |
 
 ### Why parallelism matters
 
@@ -47,7 +47,6 @@ WebAssembly can now use multiple threads. This means CPU-intensive tasks like im
 ```
 
 This is similar to JavaScript's `.reduce()`, but designed for parallel execution. It takes pairs of results and combines them until only one remains—perfect for stitching images together.
-
 
 <div class="workshop-exercise">
 

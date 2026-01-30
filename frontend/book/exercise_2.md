@@ -58,7 +58,7 @@ The `_` pattern is Rust's catch-all, similar to `default:` in JavaScript. Here w
 Notice the parameter type is `&str`, not `String`. In Rust:
 
 - `String` is an owned, heap-allocated string (like a JavaScript string)
-- `&str` is a *borrowed* reference to string data
+- `&str` is a _borrowed_ reference to string data
 
 For now, think of `&str` as "a string I can read but don't own."
 

@@ -29,6 +29,8 @@
             watchexec
             mdbook
             wasm-pack
+
+            dprint
           ];
 
           LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
