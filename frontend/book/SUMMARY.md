@@ -1,5 +1,6 @@
 # Summary
 
+- [Welcome](./00_welcome.md)
 - [Exercise 1: Your First Transformation](./exercise_1.md)
 - [Exercise 2: Pattern Matching](./exercise_2.md)
 - [Exercise 3](./exercise_3.md)
