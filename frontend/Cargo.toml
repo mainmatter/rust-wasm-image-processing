@@ -2,9 +2,9 @@
 name = "frontend"
 version = "0.1.0"
 edition = "2024"
-description = ""
-repository = ""
 license = ""
+repository = ""
+description = ""
 
 [lib]
 crate-type = ["cdylib", "rlib"]
