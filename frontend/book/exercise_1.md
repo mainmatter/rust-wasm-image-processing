@@ -17,7 +17,7 @@ To do so we are going to use the [`flipv`](https://docs.rs/photon-rs/latest/phot
 function located in the [`transform module`](https://docs.rs/photon-rs/latest/photon_rs/transform/index.html)
 of the [`photon crate`](https://docs.rs/photon-rs/latest/photon_rs/index.html).
 
-A Crate is a Rust external library. They are usually published on [`crates.io`](https://crates.io/) which
+A Crate is a Rust external library. They are usually published on [`crates.io`](https://crates.io/) - a package registry like npm, PyPI - which
 currently hosts more than 200,000 different crates!
 The documentation of crates can usually be found on [docs.rs](https://docs.rs/),
 it's very useful to check the API of a crate you are considering to use in your project.
