@@ -3,6 +3,15 @@
     "dockerfile": "Dockerfile"
   },
   "forwardPorts": [
-    "localhost:3000", "127.0.0.1:3001"
-  ]
+    3000,
+    3001
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend"
+    },
+    "3001": {
+      "label": "Backend"
+    }
+  }
 }
