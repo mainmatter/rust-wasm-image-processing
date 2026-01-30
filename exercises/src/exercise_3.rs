@@ -1,6 +1,6 @@
 use photon::PhotonImage;
 
-/// Stitches two image together horizontally.
+/// Stitches two images together horizontally.
 pub fn transform(left: PhotonImage, right: PhotonImage) -> PhotonImage {
     assert!(left.get_width() > 0);
     assert!(right.get_width() > 0);
@@ -10,10 +10,10 @@ pub fn transform(left: PhotonImage, right: PhotonImage) -> PhotonImage {
 
     let mut pixels = vec![255u8; (new_width * new_height * 4) as usize];
 
-    // Copy left image
+    // Copy left image to the start.
     copy_into(&mut pixels, new_width, &left, 0);
 
-    // Copy right image
+    // Copy right image to where the left image ends.
     copy_into(&mut pixels, new_width, &right, left.get_width());
 
     PhotonImage::new(pixels, new_width, new_height)
