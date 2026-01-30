@@ -14,3 +14,6 @@ extra-watch-dirs = ["../transformers"]
 additional-css = ["workshop.css", "wasm/frontend_bg.wasm"]
 additional-js = ["workshop.js", "wasm/frontend.js"]
 hash-files = false
+
+[output.html.playground]
+editable = true
