@@ -15,8 +15,8 @@ command -v mdbook >/dev/null 2>&1 || {
   exit 1
 }
 
-command -v wasm-pack >/dev/null 2>&1 || {
-  echo "'wasm-pack' appears to be missing. Please refer to the installation instructions in README.md." >&2
+command -v wasm-pack >/dev/null 2>&1 || wasm-pack --version | awk '{split($2,v,"."); exit !(v[1]>0 || v[2]>=13)}' || {
+  echo "'wasm-pack' >= 0.13 appears to be missing. Please refer to the installation instructions in README.md." >&2
   exit 1
 }
 
