@@ -27,7 +27,6 @@ async fn main() {
 #[tracing::instrument]
 async fn ping() -> impl IntoResponse {
     tracing::info!("Called ping");
-
     "Pong!"
 }
 
@@ -39,7 +38,6 @@ struct ImageUrl {
 #[tracing::instrument]
 async fn exercise_1(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
     tracing::info!("Called exercise_1 with: {image_url}");
-
     process_image(&image_url, move |photon_image| {
         exercises::exercise_1::transform(photon_image)
     })
@@ -57,7 +55,6 @@ async fn exercise_2(
     Query(Exercise2Params { filter }): Query<Exercise2Params>,
 ) -> impl IntoResponse {
     tracing::info!("Called exercise_2 with: {image_url}, {filter}");
-
     process_image(&image_url, move |photon_image| {
         exercises::exercise_2::transform(photon_image, &filter)
     })
@@ -77,10 +74,18 @@ async fn exercise_3(
     tracing::info!("Called exercise_3 with: {left} {right}");
 
     let (left, right) = tokio::join!(fetch_image(&left), fetch_image(&right));
-    let output_image = exercises::exercise_3::transform(left, right);
-    let output_bytes = output_image.get_bytes_jpeg(80);
 
-    (HEADERS, output_bytes)
+    let output_image = exercises::exercise_3::transform(left, right);
+
+    let output = output_image.get_bytes_jpeg(80);
+    (
+        [
+            (header::CONTENT_TYPE, "image/jpeg"),
+            (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
+            (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
+        ],
+        output,
+    )
 }
 
 #[tracing::instrument]
@@ -104,14 +109,16 @@ where
     F: FnOnce(PhotonImage) -> PhotonImage,
 {
     let photon_image = fetch_image(image_url).await;
+
     let output_image = f(photon_image);
-    let output_bytes = output_image.get_bytes_jpeg(80);
 
-    (HEADERS, output_bytes)
+    let output = output_image.get_bytes_jpeg(80);
+    (
+        [
+            (header::CONTENT_TYPE, "image/jpeg"),
+            (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
+            (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
+        ],
+        output,
+    )
 }
-
-static HEADERS: [(HeaderName, &str); 3] = [
-    (header::CONTENT_TYPE, "image/jpeg"),
-    (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
-    (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
-];
