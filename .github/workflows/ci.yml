@@ -39,3 +39,12 @@ jobs:
         run: nix develop --command cargo fmt --all -- --check
         env:
           RUSTFLAGS: -Dwarnings
+
+  spelling:
+    name: Spell Check with Typos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Actions Repository
+        uses: actions/checkout@v6
+      - name: Spell Check Repo
+        uses: crate-ci/typos@master
