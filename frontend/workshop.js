@@ -8,7 +8,8 @@ async function perform(what) {
 
   try {
     const now = performance.now();    
-    await what();
+    const imageSrc = await what();
+    imageElement.src = imageSrc;
     const later = performance.now();
     const ms = Math.round(later - now);
     
@@ -28,7 +29,6 @@ async function perform(what) {
 window.triggerBackend = async function triggerBackend(url, params) {
   perform(async () => {
     let imageUrl = document.querySelector("#imageUrl").value;
-    let imageElement = document.querySelector("#imageOutput");
     
     if (!imageUrl) {
       console.error("must specify image");
@@ -41,7 +41,7 @@ window.triggerBackend = async function triggerBackend(url, params) {
     }).toString();
     let response = await fetch(`http://localhost:3001/${url}?${queryString}`);
     let blob = await response.blob();
-    imageElement.src = URL.createObjectURL(blob);
+    return URL.createObjectURL(blob);
   })
 };
 
@@ -50,8 +50,7 @@ window.triggerWasm = async function triggerWasm(endpoint, ...params) {
     await wasm_bindgen();
   
     let imageUrl = document.querySelector("#imageUrl").value;
-    let imageElement = document.querySelector("#imageOutput");
-  
+
     if (!imageUrl) {
       console.error("must specify image");
       return;
@@ -60,7 +59,7 @@ window.triggerWasm = async function triggerWasm(endpoint, ...params) {
     const imageData = await loadImage(imageUrl);
     let output = wasm_bindgen[endpoint](imageData, ...params);
     const blob = new Blob([output], { type: "image/jpeg" });
-    imageElement.src = URL.createObjectURL(blob);
+    return URL.createObjectURL(blob);
   });
 };
 
@@ -68,7 +67,6 @@ window.triggerBackendExercise3 = async function triggerBackendExercise3() {
   perform(async () => {
     let leftUrl = document.querySelector("#imageUrlLeft").value;
     let rightUrl = document.querySelector("#imageUrlRight").value;
-    let imageElement = document.querySelector("#imageOutput");
   
     if (!leftUrl || !rightUrl) {
       console.error("must specify image");
@@ -81,7 +79,7 @@ window.triggerBackendExercise3 = async function triggerBackendExercise3() {
     }).toString();
     let response = await fetch(`http://localhost:3001/exercise_3?${queryString}`);
     let blob = await response.blob();
-    imageElement.src = URL.createObjectURL(blob);
+    return URL.createObjectURL(blob);
   });
 };
 
@@ -91,7 +89,6 @@ window.triggerWasmExercise3 = async function triggerWasmExercise3() {
   
     let leftUrl = document.querySelector("#imageUrlLeft").value;
     let rightUrl = document.querySelector("#imageUrlRight").value;
-    let imageElement = document.querySelector("#imageOutput");
   
     if (!leftUrl || !rightUrl) {
       console.error("must specify image");
@@ -104,7 +101,7 @@ window.triggerWasmExercise3 = async function triggerWasmExercise3() {
     ]);
     let output = wasm_bindgen["exercise_3"](leftData, rightData);
     const blob = new Blob([output], { type: "image/jpeg" });
-    imageElement.src = URL.createObjectURL(blob);
+    return URL.createObjectURL(blob);
   });
 };
 
