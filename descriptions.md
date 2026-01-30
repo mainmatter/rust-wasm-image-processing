@@ -23,7 +23,7 @@ Let's break this down:
 - `pub fn transform(...)` declares a public function named `transform`
 - `mut img: PhotonImage` means "this function takes a mutable image as input"
 - `-> PhotonImage` means "this function returns an image"
-- `&mut img` passes a *mutable reference* to the `flipv` function
+- `&mut img` passes a _mutable reference_ to the `flipv` function
 
 ### Mutability in Rust
 
@@ -61,19 +61,20 @@ pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage {
 
 If you're familiar with JavaScript's `switch`, `match` will feel similar—but with important differences:
 
-| JavaScript `switch`          | Rust `match`                     |
-|------------------------------|----------------------------------|
-| Falls through by default     | No fall-through                  |
-| `default:` is optional       | Must handle all cases            |
-| Can forget `break`           | Each arm is self-contained       |
+| JavaScript `switch`      | Rust `match`               |
+| ------------------------ | -------------------------- |
+| Falls through by default | No fall-through            |
+| `default:` is optional   | Must handle all cases      |
+| Can forget `break`       | Each arm is self-contained |
 
 The `_` pattern is Rust's catch-all, similar to `default:` in JavaScript. Here we use `panic!` to crash if an unknown filter is requested—we'll see better error handling patterns later.
 
 ### String slices: `&str`
 
 Notice the parameter type is `&str`, not `String`. In Rust:
+
 - `String` is an owned, heap-allocated string (like a JavaScript string)
-- `&str` is a *borrowed* reference to string data
+- `&str` is a _borrowed_ reference to string data
 
 For now, think of `&str` as "a string I can read but don't own."
 
@@ -106,6 +107,7 @@ pub fn transform(img: PhotonImage, widths: &[u32]) -> PhotonImage {
 The parameter `widths: &[u32]` is a **slice**—a borrowed view into a sequence of `u32` values. This is similar to how JavaScript functions often accept arrays without caring whether they're the original or a copy.
 
 `Vec::new()` creates an empty vector. Unlike JavaScript arrays, Rust vectors are:
+
 - **Typed**: A `Vec<PhotonImage>` can only hold `PhotonImage` values
 - **Growable**: Use `.push()` to add elements
 
@@ -154,10 +156,10 @@ If you've used JavaScript's `.map()` and `.reduce()`, this will feel familiar. T
 
 The `|width| { ... }` syntax defines a **closure**—an anonymous function. It's equivalent to JavaScript's arrow functions:
 
-| JavaScript                | Rust                          |
-|---------------------------|-------------------------------|
-| `(x) => x * 2`            | `\|x\| x * 2`                 |
-| `(x, y) => { return x + y }` | `\|x, y\| { x + y }`       |
+| JavaScript                   | Rust                 |
+| ---------------------------- | -------------------- |
+| `(x) => x * 2`               | `\|x\| x * 2`        |
+| `(x, y) => { return x + y }` | `\|x, y\| { x + y }` |
 
 ### Why parallelism matters
 

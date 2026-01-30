@@ -27,6 +27,7 @@ pub fn transform(img: PhotonImage, widths: &[u32]) -> PhotonImage {
 The parameter `widths: &[u32]` is a **slice**—a borrowed view into a sequence of `u32` values. This is similar to how JavaScript functions often accept arrays without caring whether they're the original or a copy.
 
 `Vec::new()` creates an empty vector. Unlike JavaScript arrays, Rust vectors are:
+
 - **Typed**: A `Vec<PhotonImage>` can only hold `PhotonImage` values
 - **Growable**: Use `.push()` to add elements
 
@@ -43,7 +44,6 @@ This works like JavaScript's `for...of` loop. Rust automatically handles the ite
 ### Working with pixels
 
 The exercise manually copies pixels between images. Don't worry about memorizing this—it's showing you that Rust gives you low-level control when you need it, while still keeping you safe from memory bugs.
-
 
 <div class="workshop-exercise">
 
