@@ -61,14 +61,31 @@ async fn exercise_2(
     .await
 }
 
+#[derive(Deserialize)]
+struct Exercise3Params {
+    left: String,
+    right: String,
+}
+
 #[tracing::instrument]
-async fn exercise_3(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
-    tracing::info!("Called exercise_3 with: {image_url}");
-    process_image(&image_url, move |photon_image| {
-        let widths = [50, 100, 200, 400, 800, 1600];
-        exercises::exercise_3::transform(photon_image, &widths)
-    })
-    .await
+async fn exercise_3(
+    Query(Exercise3Params { left, right }): Query<Exercise3Params>,
+) -> impl IntoResponse {
+    tracing::info!("Called exercise_3 with: {left} {right}");
+
+    let (left, right) = tokio::join!(fetch_image(&left), fetch_image(&right));
+
+    let output_image = exercises::exercise_3::transform(left, right);
+
+    let output = output_image.get_bytes_jpeg(80);
+    (
+        [
+            (header::CONTENT_TYPE, "image/jpeg"),
+            (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
+            (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
+        ],
+        output,
+    )
 }
 
 #[tracing::instrument]
@@ -81,13 +98,17 @@ async fn exercise_4(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl Into
     .await
 }
 
+async fn fetch_image(image_url: &str) -> PhotonImage {
+    let response = reqwest::get(image_url).await.unwrap();
+    let body = response.bytes().await.unwrap();
+    photon::native::open_image_from_bytes(&body).unwrap()
+}
+
 async fn process_image<F>(image_url: &str, f: F) -> impl IntoResponse + use<F>
 where
     F: FnOnce(PhotonImage) -> PhotonImage,
 {
-    let response = reqwest::get(image_url).await.unwrap();
-    let body = response.bytes().await.unwrap();
-    let photon_image = photon::native::open_image_from_bytes(&body).unwrap();
+    let photon_image = fetch_image(image_url).await;
 
     let output_image = f(photon_image);
 

@@ -33,6 +33,46 @@ window.triggerWasm = async function triggerWasm(endpoint, ...params) {
   imageElement.src = URL.createObjectURL(blob);
 };
 
+window.triggerBackendExercise3 = async function triggerBackendExercise3() {
+  let leftUrl = document.querySelector("#imageUrlLeft").value;
+  let rightUrl = document.querySelector("#imageUrlRight").value;
+  let imageElement = document.querySelector("#imageOutput");
+
+  if (!leftUrl || !rightUrl) {
+    console.error("must specify image");
+    return;
+  }
+
+  const queryString = new URLSearchParams({
+    left: leftUrl,
+    right: rightUrl,
+  }).toString();
+  let response = await fetch(`http://localhost:3001/exercise_3?${queryString}`);
+  let blob = await response.blob();
+  imageElement.src = URL.createObjectURL(blob);
+};
+
+window.triggerWasmExercise3 = async function triggerWasmExercise3() {
+  await wasm_bindgen();
+
+  let leftUrl = document.querySelector("#imageUrlLeft").value;
+  let rightUrl = document.querySelector("#imageUrlRight").value;
+  let imageElement = document.querySelector("#imageOutput");
+
+  if (!leftUrl || !rightUrl) {
+    console.error("must specify image");
+    return;
+  }
+
+  const [leftData, rightData] = await Promise.all([
+    loadImage(leftUrl),
+    loadImage(rightUrl),
+  ]);
+  let output = wasm_bindgen["exercise_3"](leftData, rightData);
+  const blob = new Blob([output], { type: "image/jpeg" });
+  imageElement.src = URL.createObjectURL(blob);
+};
+
 async function loadImage(imageUrl) {
   let response = await fetch(imageUrl);
   let buffer = await response.arrayBuffer();
