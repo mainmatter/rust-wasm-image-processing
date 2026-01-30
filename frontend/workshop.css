@@ -76,6 +76,38 @@
     border-radius: 4px;
 }
 
+.workshop-output img[src=""] {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 20em;
+}
+
+.workshop-output img[src=""]::before {
+  content: " ";
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(230, 230, 230);
+  border: 2px solid rgb(200, 200, 200);
+}
+
+.workshop-output img[src=""]::after {
+  content: attr(alt);
+  display: block;
+  position: relative;
+  font-size: 16px;
+  font-style: normal;
+  font-family: FontAwesome;
+  color: rgb(100, 100, 100);
+  font-family: var(--mono-font);
+  font-size: 0.9em;
+}
+
 /* Comparison table styling */
 .workshop-comparison {
     width: 100%;
