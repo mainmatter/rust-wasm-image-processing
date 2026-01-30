@@ -39,7 +39,7 @@ struct ImageUrl {
 async fn exercise_1(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
     tracing::info!("Called exercise_1 with: {image_url}");
     process_image(&image_url, move |photon_image| {
-        transformers::exercise_1::transform(photon_image)
+        exercises::exercise_1::transform(photon_image)
     })
     .await
 }
@@ -56,7 +56,7 @@ async fn exercise_2(
 ) -> impl IntoResponse {
     tracing::info!("Called exercise_2 with: {image_url}, {filter}");
     process_image(&image_url, move |photon_image| {
-        transformers::exercise_2::transform(photon_image, &filter)
+        exercises::exercise_2::transform(photon_image, &filter)
     })
     .await
 }
@@ -66,7 +66,7 @@ async fn exercise_3(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl Into
     tracing::info!("Called exercise_3 with: {image_url}");
     process_image(&image_url, move |photon_image| {
         let widths = [50, 100, 200, 400, 800, 1600];
-        transformers::exercise_3::transform(photon_image, &widths)
+        exercises::exercise_3::transform(photon_image, &widths)
     })
     .await
 }
@@ -76,7 +76,7 @@ async fn exercise_4(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl Into
     tracing::info!("Called exercise_4 with: {image_url}");
     process_image(&image_url, move |photon_image| {
         let widths = [50, 100, 200, 400, 800, 1600];
-        transformers::exercise_4::transform(photon_image, &widths)
+        exercises::exercise_4::transform(photon_image, &widths)
     })
     .await
 }
