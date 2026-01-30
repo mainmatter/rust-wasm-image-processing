@@ -1,4 +1,4 @@
-# Contentful Wasm Workshop
+# Rust & WebAssembly Image Processing Workshop
 
 ## Dev setup
 
