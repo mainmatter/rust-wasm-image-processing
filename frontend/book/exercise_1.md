@@ -61,10 +61,10 @@ check how they affect the image.
 <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
 
 <div class="workshop-buttons">
-<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_1', {}, 'output-ex1')">
+<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_1')">
 Backend
 </button>
-<button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_1', 'output-ex1')">
+<button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_1')">
 Wasm
 </button>
 </div>

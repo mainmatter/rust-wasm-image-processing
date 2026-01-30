@@ -53,10 +53,10 @@ This is similar to JavaScript's `.reduce()`, but designed for parallel execution
 <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
 
 <div class="workshop-buttons">
-<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_4', {}, 'output-ex4')">
+<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_4', {})">
 Backend
 </button>
-<button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_4', 'output-ex4')">
+<button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_4')">
 Wasm
 </button>
 </div>

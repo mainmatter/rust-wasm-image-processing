@@ -67,7 +67,7 @@ For now, think of `&str` as "a string I can read but don't own."
 <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
 
 <div class="workshop-buttons">
-<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_2', 'duotone_horizon')">
+<button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_2', { filter: 'duotone_horizon' })">
 Backend
 </button>
 <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_2', 'duotone_horizon')">
