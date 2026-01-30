@@ -25,7 +25,8 @@ command -v watchexec >/dev/null 2>&1 || {
   exit 1
 }
 
-watchexec --watch transformers --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve frontend' &
+# We must use 127.0.0.1 as hostname for this to work in a dev container.
+watchexec --watch transformers --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve --hostname 127.0.0.1 frontend' &
 watchexec --watch transformers -r cargo run --bin backend
 
 wait

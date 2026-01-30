@@ -16,6 +16,7 @@ async fn main() {
         .route("/exercise_4", get(exercise_4))
         .layer(TraceLayer::new_for_http());
 
+    // We must use 127.0.0.1 as hostname for this to work in a dev container.
     let addr = SocketAddr::from(([127, 0, 0, 1], 3001));
     tracing::info!("Starting server on {}", addr);
 
