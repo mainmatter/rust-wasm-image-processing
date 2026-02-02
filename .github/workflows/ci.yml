@@ -19,8 +19,8 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: Swatinem/rust-cache@v2
-      - name: cargo fmt
-        run: nix develop --command cargo
+      - name: cargo build
+        run: nix develop --command cargo build --all-targets
         env:
           RUSTFLAGS: -Dwarnings
 
