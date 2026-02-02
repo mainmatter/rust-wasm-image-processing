@@ -45,11 +45,19 @@ git checkout -b my-solutions
 All exercises are located in the `exercises` folder.
 Each exercise is structured as a Rust module that contains a single `transform` function and instructions on what to do.
 
-### Tools
+## Getting Started
 
-> We _strongly recommend_ to use the pre-maid **dev container** if your editor supports it.
+Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh`.
 
-To work through this workshop, you'll need the following tools:
+## Dev Setup
+
+There are three main supported ways:
+
+### Dev Container
+
+A pre-maid dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
+
+### Manual Setup
 
 - [**Rust**](https://www.rust-lang.org/tools/install).
   If `rustup` is already installed on your system, run `rustup update` (or another appropriate command depending on how you installed Rust on your system) to ensure you're running on the latest stable version.
@@ -61,12 +69,12 @@ To work through this workshop, you'll need the following tools:
   To install `wasm-pack`, run `cargo install --locked wasm-pack@0.14.0`
 - [**watchexec**](https://github.com/watchexec/watchexec?tab=readme-ov-file#install)
   To install `watchexec`, run `cargo install --locked watchexec-cli@2.3.3`
-- _(Optional but recommended)_ An IDE with Rust autocompletion support.
-  We recommend one of the following:
-  - [RustRover](https://www.jetbrains.com/rust/);
-  - [Zed](https://zed.dev);
-  - [Visual Studio Code](https://code.visualstudio.com) with the [`rust-analyzer`](https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer) extension.
 
-#### Nix flake
+### Nix Flake
 
 If you are already comfortable with using Nix flakes, one is available at `./flake.nix`.
+
+## Solutions
+
+You can find the solutions to the exercises in
+the [`solutions` branch](https://github.com/mainmatter/rust-wasm-image-processing/tree/solutions) of this repository.

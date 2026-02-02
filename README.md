@@ -1,14 +1,31 @@
 # Rust & WebAssembly Image Processing Workshop
 
-## Dev setup
+You've heard about Rust, but you never had the chance to try it out?\
+This course is for you!
+
+You'll learn Rust by writing an image processing application.\
+You'll go from knowing nothing about Rust to being able to start
+writing your own programs, one exercise at a time.
+
+> [!NOTE]
+> This course has been written by [Mainmatter](https://mainmatter.com/rust-consulting/).\
+> It's one of the trainings in [our portfolio of Rust workshops](https://mainmatter.com/services/workshops/rust/).\
+> Check out our [landing page](https://mainmatter.com/rust-consulting/) if you're looking for Rust consulting or
+> training!
+
+## Getting Started
+
+Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh`.
+
+## Dev Setup
 
 There are three main supported ways:
 
-### Dev container
+### Dev Container
 
 A pre-maid dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
 
-### Manual setup
+### Manual Setup
 
 - [**Rust**](https://www.rust-lang.org/tools/install).
   If `rustup` is already installed on your system, run `rustup update` (or another appropriate command depending on how you installed Rust on your system) to ensure you're running on the latest stable version.
@@ -21,6 +38,16 @@ A pre-maid dev container is available. (We especially recommend this if your edi
 - [**watchexec**](https://github.com/watchexec/watchexec?tab=readme-ov-file#install)
   To install `watchexec`, run `cargo install --locked watchexec-cli@2.3.3`
 
-### Nix flake
+### Nix Flake
 
 If you are already comfortable with using Nix flakes, one is available at `./flake.nix`.
+
+## Solutions
+
+You can find the solutions to the exercises in
+the [`solutions` branch](https://github.com/mainmatter/rust-wasm-image-processing/tree/solutions) of this repository.
+
+## License
+
+Copyright © 2025- Mainmatter GmbH (https://mainmatter.com), released under the
+[Creative Commons Attribution-NonCommercial 4.0 International license](https://creativecommons.org/licenses/by-nc/4.0/).
