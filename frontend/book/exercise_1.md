@@ -13,7 +13,7 @@ In this exercise, you'll write your first Rust function—a transformation that 
 
 </div>
 
-We want to resize an input image to a specified width, calculating the appropriate height to maintain the original aspect ratio. To do this, we'll use the [`resize`](https://docs.rs/photon-rs/latest/photon_rs/transform/fn.resize.html) function from the [`transform module`](https://docs.rs/photon-rs/latest/photon_rs/transform/index.html) of the [`photon crate`](https://docs.rs/photon-rs/latest/photon_rs/index.html).
+We want to resize an input image to a specified width, calculating the appropriate height to maintain the original aspect ratio. To do this, we'll use the [`resize`](https://docs.rs/photon-rs/latest/photon_rs/transform/fn.resize.html) function from the [`transform`](https://docs.rs/photon-rs/latest/photon_rs/transform/index.html) module of the [`photon`](https://docs.rs/photon-rs/latest/photon_rs/index.html) crate.
 
 A **crate** is a Rust package, similar to npm packages or Python modules. Crates are published to [`crates.io`](https://crates.io/) — a package registry hosting over 200,000 packages. Rust automatically generates documentation for _all_ published crates at [docs.rs](https://docs.rs/), which is useful for exploring a crate's API before using it. See [the photon page on crates.io](https://crates.io/crates/photon-rs) and [its documentation on docs.rs](https://docs.rs/photon-rs/latest/photon_rs/).
 
