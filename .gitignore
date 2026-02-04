@@ -1,5 +1,6 @@
 frontend/dist
 target
+target-serve
 .DS_Store
 dist
 mdbook_dist
