@@ -18,7 +18,7 @@ This workshop is based on the "learn by doing" principle.\
 It has been designed to be interactive and hands-on.
 
 [Mainmatter](https://mainmatter.com/rust-consulting/) developed this workshop
-to be delivered in a classroom setting, over 4 days: each attendee advances
+to be delivered in a classroom setting, each attendee advances
 through the lessons at their own pace, with an experienced instructor providing
 guidance, answering questions and diving deeper into the topics as needed.\
 If you'd like to organise a private session for your company, please [get in touch](https://mainmatter.com/contact/).
