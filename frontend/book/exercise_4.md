@@ -56,7 +56,7 @@ Notice the `iter()` and `collect()`. In Rust iterators are more flexible and not
 
 We can then use any number of iterator functions (we call these _iterator combinators_). For a full list of functions check out the [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#provided-methods) documentation!
 
-Lastly, just like we had to turn our slice _into_ and iterator, we now need to turn our iterator _into_ a collection again. This is done by the
+Lastly, just like we had to turn our slice _into_ an iterator, we now need to turn our iterator _into_ a collection again. This is done by the
 [`collect`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect) method. It will _collect_ up all items produced by the iterator into a collection type. In our case a regular `Vec`.
 
 Now, there's one weird thing still: `|width| create_thumbnail(img, *width)` whats that??? what does `|width|` mean? Well, read right on!
