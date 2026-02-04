@@ -25,8 +25,8 @@ If you'd like to organise a private session for your company, please [get in tou
 
 You can also take the workshops on your own, but we recommend you find a friend or
 a mentor to help you along the way should you get stuck. You can
-find solutions for all exercises in the
-[`solutions` branch of the GitHub repository](https://github.com/mainmatter/rust-wasm-image-processing/tree/solutions).
+find solutions for all the exercises in the
+[`solutions`](https://github.com/mainmatter/rust-wasm-image-processing/tree/solutions) branch of the GitHub repository.
 
 ## Structure
 
