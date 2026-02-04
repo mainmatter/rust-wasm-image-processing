@@ -76,11 +76,11 @@ To resize while maintaining aspect ratio, we need to:
 use photon::transform::{resize, SamplingFilter};
 
 // Calculate aspect ratio using floating-point math
-let aspect_ratio = img.get_height() as f32 / img.get_width() as f32;
-let height = (width as f32 * aspect_ratio) as u32;
+let aspect_ratio = img.get_width() as f32 / img.get_height() as f32;
+let target_height = (target_width as f32 / aspect_ratio) as u32;
 
 // Resize and return
-resize(&img, width, height, SamplingFilter::Nearest)
+resize(&img, target_width, target_height, SamplingFilter::Nearest)
 ```
 
 Notice how we cast to `f32` for the division (to avoid integer truncation), then cast the result back to `u32`.
