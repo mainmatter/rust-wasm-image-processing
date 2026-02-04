@@ -146,3 +146,30 @@
 .workshop-objectives ul {
     margin-bottom: 0;
 }
+
+#error-flash {
+  background-color: #FF977D;
+}
+
+.error-flash__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-flash__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-flash__close-button {
+  order: 2;
+  height: fit-content;
+}
+
+#timing-info {
+  font-family: var(--mono-font);
+}
+
+#loading {
+  display: none;
+}

@@ -1,0 +1,23 @@
+<svg id="loading" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white">
+  <style>
+    .ld-bar { fill: #121212; opacity: 0.5; }
+    .ld-1 { animation: ld-fade 1s infinite; -webkit-animation: ld-fade 1s infinite; }
+    .ld-2 { animation: ld-fade 1s 0.125s infinite; -webkit-animation: ld-fade 1s 0.125s infinite; }
+    .ld-3 { animation: ld-fade 1s 0.25s infinite; -webkit-animation: ld-fade 1s 0.25s infinite; }
+    .ld-4 { animation: ld-fade 1s 0.375s infinite; -webkit-animation: ld-fade 1s 0.375s infinite; }
+    .ld-5 { animation: ld-fade 1s 0.5s infinite; -webkit-animation: ld-fade 1s 0.5s infinite; }
+    .ld-6 { animation: ld-fade 1s 0.675s infinite; -webkit-animation: ld-fade 1s 0.675s infinite; }
+    .ld-7 { animation: ld-fade 1s 0.75s infinite; -webkit-animation: ld-fade 1s 0.75s infinite; }
+    .ld-8 { animation: ld-fade 1s 0.875s infinite; -webkit-animation: ld-fade 1s 0.875s infinite; }
+    @-webkit-keyframes ld-fade { 0%   { opacity: 1; } 100% { opacity: 0.1; } }
+    @keyframes ld-fade { 0%   { opacity: 1; } 100% { opacity: 0.1; } }
+  </style>
+  <path class="ld-bar ld-1" d="M14 0 H18 V8 H14 z" transform="rotate(0 16 16)"></path>
+  <path class="ld-bar ld-2" d="M14 0 H18 V8 H14 z" transform="rotate(45 16 16)"></path>
+  <path class="ld-bar ld-3" d="M14 0 H18 V8 H14 z" transform="rotate(90 16 16)"></path>
+  <path class="ld-bar ld-4" d="M14 0 H18 V8 H14 z" transform="rotate(135 16 16)"></path>
+  <path class="ld-bar ld-5" d="M14 0 H18 V8 H14 z" transform="rotate(180 16 16)"></path>
+  <path class="ld-bar ld-6" d="M14 0 H18 V8 H14 z" transform="rotate(225 16 16)"></path>
+  <path class="ld-bar ld-7" d="M14 0 H18 V8 H14 z" transform="rotate(270 16 16)"></path>
+  <path class="ld-bar ld-8" d="M14 0 H18 V8 H14 z" transform="rotate(315 16 16)"></path>
+</svg>

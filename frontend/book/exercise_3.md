@@ -52,9 +52,12 @@ The exercise manually copies pixels between images. Don't worry about memorizing
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasmExercise3()">
             Wasm
         </button>
+        {{#include includes/spinner.svg}}
     </div>
     <div class="workshop-output">
-        <h4>Output</h4>
+        <h4>Output <span id="timing-info"></span></h4>
         <img id="imageOutput" src="" alt="Transformed image will appear here" />
     </div>
 </div>
+
+{{#include includes/error-flash.html}}

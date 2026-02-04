@@ -205,9 +205,10 @@ You'll want to support several filters from the [photon filters module](https://
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_2', document.getElementById('filterSelect').value)">
             Wasm
         </button>
+        {{#include includes/spinner.svg}}
     </div>
     <div class="workshop-output">
-        <h4>Output</h4>
+        <h4>Output <span id="timing-info"></span></h4>
         <img id="imageOutput" src="" alt="Transformed image will appear here" />
     </div>
 </div>
@@ -215,3 +216,5 @@ You'll want to support several filters from the [photon filters module](https://
 ## What's Next?
 
 You've learned how `match` gives you type-safe branching with exhaustiveness checking—the compiler ensures you never forget a case. In the next exercise, we'll explore some other powerful Rust features: _arrays_, _loops_, and _iterators_.
+
+{{#include includes/error-flash.html}}

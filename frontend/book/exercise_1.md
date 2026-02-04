@@ -65,9 +65,10 @@ check how they affect the image.
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_1')">
             Wasm
         </button>
+        {{#include includes/spinner.svg}}
     </div>
     <div class="workshop-output">
-        <h4>Output</h4>
+        <h4>Output <span id="timing-info"></span></h4>
         <img id="imageOutput" src="" alt="Transformed image will appear here" />
     </div>
 </div>
@@ -75,3 +76,5 @@ check how they affect the image.
 ## What's Next?
 
 You've implemented your first Rust function, that was easy wasn't it? Next, we'll look at a more interesting problem, *match*ing user input, strings, and ownership.
+
+{{#include includes/error-flash.html}}
