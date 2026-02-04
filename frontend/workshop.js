@@ -7,19 +7,21 @@ async function perform(what) {
   imageElement.src = "";
 
   try {
-    const now = performance.now();    
+    const now = performance.now();
     const imageSrc = await what();
     imageElement.src = imageSrc;
     const later = performance.now();
     const ms = Math.round(later - now);
-    
-    timingInfo.innerHTML = `(${ms}ms)`;
+
+    timingInfo.innerHTML = `(took ${ms}ms)`;
   } catch (error) {
     const errorFlash = document.querySelector("#error-flash");
     errorFlash.querySelector("#trace").innerHTML = error.stack;
-    errorFlash.querySelector("#error-flash-close-button").addEventListener("click", () => {
-      errorFlash.close();
-    });
+    errorFlash
+      .querySelector("#error-flash-close-button")
+      .addEventListener("click", () => {
+        errorFlash.close();
+      });
     errorFlash.showModal();
   } finally {
     loading.style.display = "none";
@@ -29,12 +31,12 @@ async function perform(what) {
 window.triggerBackend = async function triggerBackend(url, params) {
   perform(async () => {
     let imageUrl = document.querySelector("#imageUrl").value;
-    
+
     if (!imageUrl) {
       console.error("must specify image");
       return;
     }
-    
+
     const queryString = new URLSearchParams({
       image_url: imageUrl,
       ...params,
@@ -42,20 +44,20 @@ window.triggerBackend = async function triggerBackend(url, params) {
     let response = await fetch(`http://localhost:3001/${url}?${queryString}`);
     let blob = await response.blob();
     return URL.createObjectURL(blob);
-  })
+  });
 };
 
 window.triggerWasm = async function triggerWasm(endpoint, ...params) {
   perform(async () => {
     await wasm_bindgen();
-  
+
     let imageUrl = document.querySelector("#imageUrl").value;
 
     if (!imageUrl) {
       console.error("must specify image");
       return;
     }
-  
+
     const imageData = await loadImage(imageUrl);
     let output = wasm_bindgen[endpoint](imageData, ...params);
     const blob = new Blob([output], { type: "image/jpeg" });
@@ -67,17 +69,19 @@ window.triggerBackendExercise3 = async function triggerBackendExercise3() {
   perform(async () => {
     let leftUrl = document.querySelector("#imageUrlLeft").value;
     let rightUrl = document.querySelector("#imageUrlRight").value;
-  
+
     if (!leftUrl || !rightUrl) {
       console.error("must specify image");
       return;
     }
-  
+
     const queryString = new URLSearchParams({
       left: leftUrl,
       right: rightUrl,
     }).toString();
-    let response = await fetch(`http://localhost:3001/exercise_3?${queryString}`);
+    let response = await fetch(
+      `http://localhost:3001/exercise_3?${queryString}`,
+    );
     let blob = await response.blob();
     return URL.createObjectURL(blob);
   });
@@ -86,15 +90,15 @@ window.triggerBackendExercise3 = async function triggerBackendExercise3() {
 window.triggerWasmExercise3 = async function triggerWasmExercise3() {
   perform(async () => {
     await wasm_bindgen();
-  
+
     let leftUrl = document.querySelector("#imageUrlLeft").value;
     let rightUrl = document.querySelector("#imageUrlRight").value;
-  
+
     if (!leftUrl || !rightUrl) {
       console.error("must specify image");
       return;
     }
-  
+
     const [leftData, rightData] = await Promise.all([
       loadImage(leftUrl),
       loadImage(rightUrl),
