@@ -1,20 +1,19 @@
 use photon::PhotonImage;
 
+const BYTES_PER_PIXEL: u32 = 4; // red, green, blue, alpha
+
 /// Stitches two images together horizontally.
-pub fn transform(left: PhotonImage, right: PhotonImage) -> PhotonImage {
+pub fn transform(left: &PhotonImage, right: &PhotonImage) -> PhotonImage {
     assert!(left.get_width() > 0);
     assert!(right.get_width() > 0);
 
     let new_width = left.get_width() + right.get_width();
     let new_height = left.get_height().max(right.get_height());
 
-    let mut pixels = vec![255u8; (new_width * new_height * 4) as usize];
+    let mut pixels = vec![255u8; (new_width * new_height * BYTES_PER_PIXEL) as usize];
 
-    // Copy left image to the start.
-    copy_into(&mut pixels, new_width, &left, 0);
-
-    // Copy right image to where the left image ends.
-    copy_into(&mut pixels, new_width, &right, left.get_width());
+    // TODO Copy left image to the start.
+    // TODO Copy right image to where the left image ends.
 
     PhotonImage::new(pixels, new_width, new_height)
 }
@@ -27,13 +26,11 @@ fn copy_into(dst: &mut [u8], dst_width: u32, src: &PhotonImage, x_offset: u32) {
 
     for y in 0..src_height {
         for x in 0..src_width {
-            let src_idx = ((y * src_width + x) * 4) as usize;
-            let dst_idx = ((y * dst_width + x_offset + x) * 4) as usize;
+            // we calculated the index of our pixel in the source image pixel buffer `src_pixels`
+            let src_index = ((y * src_width + x) * BYTES_PER_PIXEL) as usize;
 
-            dst[dst_idx] = src_pixels[src_idx];
-            dst[dst_idx + 1] = src_pixels[src_idx + 1];
-            dst[dst_idx + 2] = src_pixels[src_idx + 2];
-            dst[dst_idx + 3] = src_pixels[src_idx + 3];
+            // we need to compute the index of our pixel in the destination image
+            // and then copy the pixels 4 bytes into the destination position
         }
     }
 }

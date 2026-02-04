@@ -44,10 +44,17 @@ async fn exercise_1(
 ) -> impl IntoResponse {
     tracing::info!("Called exercise_1 with: {image_url} {width}");
 
-    process_image(&image_url, move |photon_image| {
-        exercises::exercise_1::transform(photon_image, width)
-    })
-    .await
+    let photon_image = fetch_image(&image_url).await;
+    let output_image = exercises::exercise_1::transform(&photon_image, width);
+    let output_bytes = output_image.get_bytes_jpeg(80);
+
+    let headers = [
+        (header::CONTENT_TYPE, "image/jpeg"),
+        (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
+        (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
+    ];
+
+    (headers, output_bytes)
 }
 
 #[derive(Deserialize)]
@@ -62,10 +69,17 @@ async fn exercise_2(
 ) -> impl IntoResponse {
     tracing::info!("Called exercise_2 with: {image_url}, {filter}");
 
-    process_image(&image_url, move |photon_image| {
-        exercises::exercise_2::transform(photon_image, &filter)
-    })
-    .await
+    let mut photon_image = fetch_image(&image_url).await;
+    exercises::exercise_2::transform(&mut photon_image, &filter);
+    let output_bytes = photon_image.get_bytes_jpeg(80);
+
+    let headers = [
+        (header::CONTENT_TYPE, "image/jpeg"),
+        (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"),
+        (header::ACCESS_CONTROL_ALLOW_METHODS, "GET"),
+    ];
+
+    (headers, output_bytes)
 }
 
 #[derive(Deserialize)]
@@ -81,7 +95,7 @@ async fn exercise_3(
     tracing::info!("Called exercise_3 with: {left} {right}");
 
     let (left, right) = tokio::join!(fetch_image(&left), fetch_image(&right));
-    let output_image = exercises::exercise_3::transform(left, right);
+    let output_image = exercises::exercise_3::transform(&left, &right);
     let output_bytes = output_image.get_bytes_jpeg(80);
 
     let headers = [
@@ -106,24 +120,9 @@ async fn exercise_4(
     >,
 ) -> impl IntoResponse {
     tracing::info!("Called exercise_4 with: {image_url} {width:?}");
-    process_image(&image_url, move |photon_image| {
-        exercises::exercise_4::transform(photon_image, &width)
-    })
-    .await
-}
 
-async fn fetch_image(image_url: &str) -> PhotonImage {
-    let response = reqwest::get(image_url).await.unwrap();
-    let body = response.bytes().await.unwrap();
-    photon::native::open_image_from_bytes(&body).unwrap()
-}
-
-async fn process_image<F>(image_url: &str, f: F) -> impl IntoResponse + use<F>
-where
-    F: FnOnce(PhotonImage) -> PhotonImage,
-{
-    let photon_image = fetch_image(image_url).await;
-    let output_image = f(photon_image);
+    let photon_image = fetch_image(&image_url).await;
+    let output_image = exercises::exercise_4::transform(&photon_image, &width);
     let output_bytes = output_image.get_bytes_jpeg(80);
 
     let headers = [
@@ -133,4 +132,10 @@ where
     ];
 
     (headers, output_bytes)
+}
+
+async fn fetch_image(image_url: &str) -> PhotonImage {
+    let response = reqwest::get(image_url).await.unwrap();
+    let body = response.bytes().await.unwrap();
+    photon::native::open_image_from_bytes(&body).unwrap()
 }
