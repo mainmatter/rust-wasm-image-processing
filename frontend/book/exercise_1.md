@@ -89,6 +89,8 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
 
 👉 Implement the `transform` function in `exercises/src/exercise_1.rs` and test it by clicking the **Backend** and **Wasm** buttons.
 
+Run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
+
 👉 Try different width values to see the resizing in action. Compare how small widths (like 100) versus large widths (like 1600) affect the result.
 
 <div class="workshop-exercise">

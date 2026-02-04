@@ -239,6 +239,8 @@ Use assertions for conditions that _should never happen_ if the code is correct.
 
 👉 Open `exercises/src/exercise_3.rs` and implement the todos!
 
+Don't forget to run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
+
 👉 Test the implementation using the buttons below with two different images.
 
 <div class="workshop-exercise">

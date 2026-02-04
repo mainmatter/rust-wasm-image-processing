@@ -10,12 +10,12 @@ pub fn transform(left: &PhotonImage, right: &PhotonImage) -> PhotonImage {
     let new_width = left.get_width() + right.get_width();
     let new_height = left.get_height().max(right.get_height());
 
-    let pixels = vec![255u8; (new_width * new_height * BYTES_PER_PIXEL) as usize];
-
+    // TODO initialize a vec that has space for new new_width * new_height pixels
     // TODO Copy left image to the start.
     // TODO Copy right image to where the left image ends.
 
-    PhotonImage::new(pixels, new_width, new_height)
+    // PhotonImage::new(pixels, new_width, new_height)
+    todo!()
 }
 
 /// Copies an image into a pixel buffer at a given x offset
