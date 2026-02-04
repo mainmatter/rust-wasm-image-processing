@@ -29,7 +29,8 @@ Let's break this down together:
 
 This function takes a single `PhotonImage` argument and returns the modified image using the same type.
 
-`pub fn` are two Rust keywords used to define a public function. We need to make it public as this function will be called from other another file.
+`pub fn` are two Rust keywords used to define a public function. We need to make it public as this function will be called from another file.
+
 Coming from JavaScript, you might be used to modifying objects freely. Rust is stricter: values are **immutable by default**. You must explicitly mark something as `mut` if you intend to change it.
 
 The `todo!()` macro is a placeholder. Running this code will panic at runtime with "not yet implemented".
