@@ -15,8 +15,9 @@ async function perform(what) {
 
     timingInfo.innerHTML = `(took ${ms}ms)`;
   } catch (error) {
+    console.error(error);
     const errorFlash = document.querySelector("#error-flash");
-    errorFlash.querySelector("#trace").innerHTML = error.stack;
+    errorFlash.querySelector("#trace").innerHTML = `${error} \n ${error.stack}`;
     errorFlash
       .querySelector("#error-flash-close-button")
       .addEventListener("click", () => {
@@ -28,20 +29,27 @@ async function perform(what) {
   }
 }
 
-window.triggerBackend = async function triggerBackend(url, params) {
+window.triggerBackend = async function triggerBackend(url, params = {}) {
   perform(async () => {
     let imageUrl = document.querySelector("#imageUrl").value;
+    let imageElement = document.querySelector("#imageOutput");
 
     if (!imageUrl) {
       console.error("must specify image");
       return;
     }
 
-    const queryString = new URLSearchParams({
+    const query = new URLSearchParams({
       image_url: imageUrl,
-      ...params,
-    }).toString();
-    let response = await fetch(`http://localhost:3001/${url}?${queryString}`);
+    });
+
+    for (const [key, value] of params) {
+      query.append(key, value);
+    }
+
+    let response = await fetch(
+      `http://localhost:3001/${url}?${query.toString()}`,
+    );
     let blob = await response.blob();
     return URL.createObjectURL(blob);
   });

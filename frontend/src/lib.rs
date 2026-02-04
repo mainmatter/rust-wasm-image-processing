@@ -36,10 +36,9 @@ pub fn exercise_3(left_image: &[u8], right_image: &[u8]) -> Vec<u8> {
 }
 
 #[wasm_bindgen]
-pub fn exercise_4(image_data: &[u8]) -> Vec<u8> {
+pub fn exercise_4(image_data: &[u8], widths: &[u32]) -> Vec<u8> {
     let photon_image = photon::native::open_image_from_bytes(image_data).unwrap();
 
-    let widths = [50, 100, 200, 400, 800, 1600];
     let output_image = exercises::exercise_4::transform(photon_image, &widths);
 
     output_image.get_bytes_jpeg(80)

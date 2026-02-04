@@ -6,6 +6,7 @@ members = ["backend", "exercises", "frontend"]
 exercises = { version = "0.1.0", path = "./exercises" }
 
 axum = "0.8.8"
+axum-extra = { version = "0.12.5", features = ["query"] }
 photon = { package = "photon-rs", version = "0.3.3" }
 reqwest = "0.13.1"
 serde = "1.0.228"

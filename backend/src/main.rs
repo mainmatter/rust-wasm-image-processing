@@ -90,12 +90,21 @@ async fn exercise_3(
     (headers, output_bytes)
 }
 
+#[derive(Deserialize)]
+struct Exercise4Params {
+    image_url: String,
+    width: Vec<u32>,
+}
+
 #[tracing::instrument]
-async fn exercise_4(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
-    tracing::info!("Called exercise_4 with: {image_url}");
+async fn exercise_4(
+    axum_extra::extract::Query(Exercise4Params { image_url, width }): axum_extra::extract::Query<
+        Exercise4Params,
+    >,
+) -> impl IntoResponse {
+    tracing::info!("Called exercise_4 with: {image_url} {width:?}");
     process_image(&image_url, move |photon_image| {
-        let widths = [50, 100, 200, 400, 800, 1600];
-        exercises::exercise_4::transform(photon_image, &widths)
+        exercises::exercise_4::transform(photon_image, &width)
     })
     .await
 }
