@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -24,7 +24,7 @@ jobs:
         env:
           RUSTFLAGS: -Dwarnings
 
-  formatter:
+  fmt:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
