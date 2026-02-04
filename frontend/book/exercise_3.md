@@ -21,12 +21,12 @@ This might sound simple, but it requires us to work with raw pixel data—creati
 Let's look at the function signature in `exercises/src/exercise_3.rs`:
 
 ```rust
-pub fn transform(left: PhotonImage, right: PhotonImage) -> PhotonImage {
+pub fn transform(left: &PhotonImage, right: &PhotonImage) -> PhotonImage {
     // ...
 }
 ```
 
-Unlike previous exercises, this function takes ownership of **two** images and returns a brand new one. We'll need to create a fresh pixel buffer, copy data from both source images, and construct the result.
+Unlike previous exercises, this function takes references of **two** images and returns a brand new one. We'll need to create a fresh pixel buffer, copy data from both source images, and construct the result.
 
 ## Vectors: Rust's Growable Arrays
 
@@ -124,7 +124,7 @@ The type `&[T]` is an immutable slice—read-only access. The type `&mut [T]` is
 
 ### Why Our Function Uses `&mut [u8]`-->
 
-In our exercise code, we have the following a helper function:
+In our exercise code, we have the following helper function:
 
 ```rust
 fn copy_into(dst: &mut [u8], dst_width: u32, src: &PhotonImage, x_offset: u32) {
