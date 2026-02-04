@@ -9,9 +9,9 @@ on:
       - main
 
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - name: Install Nix
@@ -19,14 +19,14 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: Swatinem/rust-cache@v2
-      - name: cargo fmt
-        run: nix develop --command cargo
+      - name: cargo build
+        run: nix develop --command cargo build --all-targets
         env:
           RUSTFLAGS: -Dwarnings
 
-  formatter:
+  fmt:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - uses: dprint/check@v2.2
