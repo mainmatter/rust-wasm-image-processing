@@ -28,6 +28,6 @@ fi
 # We must bind to 0.0.0.0 for this to work in a dev container.
 watchexec --watch exercises --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve --hostname 0.0.0.0 -p 3000 frontend' &
 
-watchexec --watch exercises --watch  backend/src -r 'cargo run --bin backend'
+watchexec --watch exercises --watch  backend/src -r 'cargo run --target-dir target-serve --bin backend'
 
 wait
