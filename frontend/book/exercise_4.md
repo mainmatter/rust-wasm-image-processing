@@ -59,7 +59,7 @@ We can then use any number of iterator functions (we call these _iterator combin
 Lastly, just like we had to turn our slice _into_ and iterator, we now need to turn our iterator _into_ a collection again. This is done by the
 [`collect`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect) method. It will _collect_ up all items produced by the iterator into a collection type. In our case a regular `Vec`.
 
-Now, there's one weird thing still: `|width| create_thumbnail(*width)` whats that??? what does `|width|` mean? Well, read right on!
+Now, there's one weird thing still: `|width| create_thumbnail(img, *width)` whats that??? what does `|width|` mean? Well, read right on!
 
 ## Closures
 
