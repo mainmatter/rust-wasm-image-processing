@@ -20,7 +20,7 @@ A **crate** is a Rust package, similar to npm packages or Python modules. Crates
 Let's implement our first transformation by editing `exercises/src/exercise_1.rs`:
 
 ```rust
-pub fn transform(img: PhotonImage, width: u32) -> PhotonImage {
+pub fn transform(img: &PhotonImage, target_width: u32) -> PhotonImage {
     todo!()
 }
 ```
