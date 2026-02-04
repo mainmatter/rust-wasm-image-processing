@@ -20,14 +20,14 @@ We want to build a filter selector: a function that takes an image and a filter 
 Let's start by looking at the function signature in `exercises/src/exercise_2.rs`:
 
 ```rust
-pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage {
+pub fn transform(img: &mut PhotonImage, filter: &str) {
     todo!()
 }
 ```
 
 This function takes two parameters:
 
-- `mut img: PhotonImage` — the input image (mutable, so we can modify it)
+- `img: &mut PhotonImage` — the input image as a mutable reference, so we can modify it
 - `filter: &str` — the name of the filter to apply
 
 But wait, what's that `&str` type? If you're coming from JavaScript, you might expect just `String`. Let's understand this first, because it's fundamental to how Rust works.
@@ -93,7 +93,7 @@ fn main() {
 
 fn other_function(name: &str) {
     // ... use name ...
-    // because we took ownership, `name` goes out of scope here, memory is automatically freed
+    // as we only have a borrow of the string, it will *not* be freed when going out of scope
 }
 ```
 
@@ -160,7 +160,7 @@ Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — 
 error[E0004]: non-exhaustive patterns: `&_` not covered
 ```
 
-This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro crashes the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
+This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro terminates the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
 
 ## Your Task
 
@@ -168,12 +168,13 @@ This might feel strict, but it catches bugs at compile time that JavaScript woul
 
 You'll want to support several filters from the [photon filters module](https://docs.rs/photon-rs/latest/photon_rs/filters/index.html). Here are some to get you started:
 
-- `"cali"` → `photon::filters::cali(&mut img)`
-- `"dramatic"` → `photon::filters::dramatic(&mut img)`
-- `"duotone_horizon"` → `photon::filters::duotone_horizon(&mut img)`
-- `"lofi"` → `photon::filters::lofi(&mut img)`
-- `"golden"` → `photon::filters::golden(&mut img)`
-- `"pastel_pink"` → `photon::filters::pastel_pink(&mut img)`
+- `"cali"` → `photon::filters::cali(img)`
+- `"dramatic"` → `photon::filters::dramatic(img)`
+- `"duotone_horizon"` → `photon::filters::duotone_horizon(img)`
+- `"duotone_lilac"` → `photon::filters::duotone_lilac(img)`
+- `"lofi"` → `photon::filters::lofi(img)`
+- `"golden"` → `photon::filters::golden(img)`
+- `"pastel_pink"` → `photon::filters::pastel_pink(img)`
 
 👉 Test your implementation using the buttons below. Try different filter names!
 
