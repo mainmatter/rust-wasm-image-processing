@@ -11,9 +11,9 @@ pub fn init() {
 }
 
 #[wasm_bindgen]
-pub fn exercise_1(image_data: &[u8]) -> Vec<u8> {
+pub fn exercise_1(image_data: &[u8], width: u32) -> Vec<u8> {
     let photon_image = photon::native::open_image_from_bytes(image_data).unwrap();
-    let output_image = exercises::exercise_1::transform(photon_image);
+    let output_image = exercises::exercise_1::transform(photon_image, width);
     output_image.get_bytes_jpeg(80)
 }
 

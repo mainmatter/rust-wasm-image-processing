@@ -33,29 +33,32 @@ async fn ping() -> impl IntoResponse {
 }
 
 #[derive(Deserialize)]
-struct ImageUrl {
+struct Exercise1Params {
     image_url: String,
+    width: u32,
 }
 
 #[tracing::instrument]
-async fn exercise_1(Query(ImageUrl { image_url }): Query<ImageUrl>) -> impl IntoResponse {
-    tracing::info!("Called exercise_1 with: {image_url}");
+async fn exercise_1(
+    Query(Exercise1Params { image_url, width }): Query<Exercise1Params>,
+) -> impl IntoResponse {
+    tracing::info!("Called exercise_1 with: {image_url} {width}");
 
     process_image(&image_url, move |photon_image| {
-        exercises::exercise_1::transform(photon_image)
+        exercises::exercise_1::transform(photon_image, width)
     })
     .await
 }
 
 #[derive(Deserialize)]
 struct Exercise2Params {
+    image_url: String,
     filter: String,
 }
 
 #[tracing::instrument]
 async fn exercise_2(
-    Query(ImageUrl { image_url }): Query<ImageUrl>,
-    Query(Exercise2Params { filter }): Query<Exercise2Params>,
+    Query(Exercise2Params { image_url, filter }): Query<Exercise2Params>,
 ) -> impl IntoResponse {
     tracing::info!("Called exercise_2 with: {image_url}, {filter}");
 
