@@ -93,7 +93,7 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
 
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://cdn.prod.www.spiegel.de/images/71f3dce7-4911-4442-be30-32363b757237_w1920_r1.778_fpx49_fpy47.webp" />
+    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" />
     <label for="targetWidth">Target width</label>
     <input type="number" class="workshop-image-param" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
     <div class="workshop-buttons">

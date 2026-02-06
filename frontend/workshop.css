@@ -90,7 +90,7 @@
 
 .workshop-output--compare__image-one, .workshop-output--compare__image-two {
   object-fit: contain;
-  max-width: calc(750px - 4em - 6px) !important;
+  max-width: calc(var(--content-max-width) - 4em - 6px) !important;
 }
 
 .workshop-output--compare__mask {
