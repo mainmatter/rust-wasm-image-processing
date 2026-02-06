@@ -187,7 +187,9 @@ Consult the documentation for [rayons methods](https://docs.rs/rayon/latest/rayo
     </div>
     <div class="workshop-output">
         <h4>Output <span id="timing-info"></span></h4>
-        <img id="imageOutput" src="" alt="Transformed image will appear here" />
+        <div class="workshop-output--noncompare">
+            <img id="imageOutput" />
+        </div>
     </div>
 </div>
 

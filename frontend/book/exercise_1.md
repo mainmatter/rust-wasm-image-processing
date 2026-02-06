@@ -110,7 +110,7 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
         <div class="workshop-output--compare" style="overflow: visible;">
             <img id="imageOutput" class="workshop-output--compare__image-one">
             <div class="workshop-output--compare__mask">
-                <img id="imageInput" class="workshop-output--compare__image-two" alt="Transformed image will appear here" />
+                <img id="imageInput" class="workshop-output--compare__image-two" />
             </div>
             <div class="workshop-output--compare__separator">
                 {{#include includes/slider-handle.svg}}

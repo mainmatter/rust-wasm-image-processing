@@ -257,7 +257,9 @@ Use assertions for conditions that _should never happen_ if the code is correct.
     </div>
     <div class="workshop-output">
         <h4>Output <span id="timing-info"></span></h4>
-        <img id="imageOutput" src="" alt="Transformed image will appear here" />
+        <div class="workshop-output--noncompare">
+            <img id="imageOutput" />
+        </div>
     </div>
 </div>
 
