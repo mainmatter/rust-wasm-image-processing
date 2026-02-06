@@ -178,6 +178,7 @@ label {
 .error-flash__header {
   display: flex;
   justify-content: space-between;
+  gap: 1em;
 }
 
 .error-flash__title {
