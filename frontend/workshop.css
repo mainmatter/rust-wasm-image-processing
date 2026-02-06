@@ -148,8 +148,11 @@
 }
 
 #error-flash {
-  background-color: #FF977D;
+  border-radius: 4px;
+  background-color: #FFB4B5;
+  border: 2px solid #ff4546;
 }
+
 
 .error-flash__content {
   display: flex;
@@ -161,9 +164,19 @@
   justify-content: space-between;
 }
 
-.error-flash__close-button {
+.error-flash__title {
+  order: 1;
+  margin: 0;
+}
+
+.error-flash__header form {
   order: 2;
   height: fit-content;
+}
+
+.error-flash__close-button {
+  background-color: #ff4546;
+  color: #fff;
 }
 
 #timing-info {
