@@ -1,7 +1,10 @@
-use photon::{PhotonImage, transform::{SamplingFilter, resize}};
+use photon::{
+    PhotonImage,
+    transform::{SamplingFilter, resize},
+};
 use rayon::prelude::*;
 
-const _BYTES_PER_PIXEL: u32 = 4; // red, green, blue, alpha
+const BYTES_PER_PIXEL: u32 = 4; // red, green, blue, alpha
 
 /// Creates a thumbnail strip with a color filter applied, using parallel iteration.
 pub fn transform(img: &PhotonImage, widths: &[u32]) -> PhotonImage {
@@ -34,7 +37,6 @@ pub fn transform(img: &PhotonImage, widths: &[u32]) -> PhotonImage {
         })
         .unwrap()
 }
-
 
 /// Copies an image into a pixel buffer at a given x offset
 fn copy_into(dst: &mut [u8], dst_width: u32, src: &PhotonImage, x_offset: u32) {
