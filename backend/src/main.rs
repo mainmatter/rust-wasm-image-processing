@@ -1,4 +1,10 @@
-use axum::{Router, extract::Query, http::header, response::IntoResponse, routing::get};
+use axum::{
+    Router,
+    extract::Query,
+    http::header,
+    response::{Html, IntoResponse},
+    routing::get,
+};
 use photon::PhotonImage;
 use serde::Deserialize;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
@@ -9,6 +15,7 @@ async fn main() {
     tracing_subscriber::fmt().init();
 
     let app = Router::new()
+        .route("/", get(root))
         .route("/ping", get(ping))
         .route("/exercise_1", get(exercise_1))
         .route("/exercise_2", get(exercise_2))
@@ -23,6 +30,15 @@ async fn main() {
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
+}
+
+#[tracing::instrument]
+async fn root() -> impl IntoResponse {
+    tracing::info!("Called root");
+
+    Html(
+        "This is the <i>backend</i> of rust-wasm-image-processing<br><br>To get started with the exercises, browse the <i>frontend</i> at <a href=\"http://0.0.0.0:3000\">http://0.0.0.0:3000</a>",
+    )
 }
 
 #[tracing::instrument]
