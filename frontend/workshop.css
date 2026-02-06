@@ -6,8 +6,7 @@
     background: var(--quote-bg);
 }
 
-.workshop-image-url, .workshop-image-param {
-    width: calc(100% - 1em);
+.workshop-image-url, .workshop-image-param, .workshop-select {
     padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid var(--quote-border);
@@ -16,6 +15,10 @@
     font-size: 0.9em;
     background: var(--bg);
     color: var(--fg);
+}
+
+.workshop-image-url, .workshop-image-param {
+    width: calc(100% - 1em);
 }
 
 .workshop-buttons {
@@ -94,6 +97,13 @@
   bottom: 0;
   background-color: rgb(230, 230, 230);
   border: 2px solid rgb(200, 200, 200);
+}
+
+label {
+  margin: 0 0 .25em 0;
+  display: block;
+  font-size: 75%;
+  font-weight: 700;
 }
 
 .workshop-output img[src=""]::after {

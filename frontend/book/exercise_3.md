@@ -242,7 +242,9 @@ Use assertions for conditions that _should never happen_ if the code is correct.
 👉 Test the implementation using the buttons below with two different images.
 
 <div class="workshop-exercise">
+    <label for="imageUrlLeft">Left input image (URL)</label>
     <input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <label for="imageUrlRight">Right input image (URL)</label>
     <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackendExercise3()">

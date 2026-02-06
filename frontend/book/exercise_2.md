@@ -204,8 +204,10 @@ You'll want to support several filters from the [photon filters module](https://
 👉 Test your implementation using the buttons below. Try different filter names!
 
 <div class="workshop-exercise">
+    <label for="imageUrl">Input image (URL)</label>
     <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
-    <select id="filterSelect" class="workshop-select" style="margin: 10px 0; padding: 8px; font-size: 14px;">
+    <label for="filterSelect">Filter</label>
+    <select id="filterSelect" class="workshop-select">
     <option value="cali">cali</option>
     <option value="dramatic">dramatic</option>
     <option value="duotone_horizon" selected>duotone_horizon</option>

@@ -172,7 +172,9 @@ Consult the documentation for [rayons methods](https://docs.rs/rayon/latest/rayo
 👉 **Challenge**: Add another `.map()` step to flip each thumbnail before stitching.
 
 <div class="workshop-exercise">
+    <label for="imageUrl">Input image (URL)</label>
     <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <label for="imageWidths">Image widths (comma-separated)</label>
     <input type="text" class="workshop-image-param" id="imageWidths" placeholder="widths of thumbnail images" value="50, 100, 200, 400, 800, 1600" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="{ triggerBackend('exercise_4', new URLSearchParams(document.getElementById('imageWidths').value.split(',').map(width => ['width', width.trim()]))); }">

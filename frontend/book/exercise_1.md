@@ -92,7 +92,9 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
 👉 Try different width values to see the resizing in action. Compare how small widths (like 100) versus large widths (like 1600) affect the result.
 
 <div class="workshop-exercise">
+    <label for="imageUrl">Input image (URL)</label>
     <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <label for="targetWidth">Target width</label>
     <input type="number" class="workshop-image-param" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_1', new URLSearchParams({ width: document.getElementById('targetWidth').value }))">
