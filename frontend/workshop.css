@@ -82,7 +82,7 @@
 .workshop-output--compare, .workshop-output--noncompare {
   min-height: 30em;
   border-radius: 4px;
-  background: repeating-conic-gradient(#808080 0 25%, #0000 0 50%) 50% / 20px 20px;
+  background: repeating-conic-gradient(#808080 0 25%, #fff 0 50%) 50% / 20px 20px;
   border: 1px solid rgb(0 0 0 / 0.05);
 }
 
@@ -108,6 +108,7 @@
   z-index: 1;
   overflow: hidden;
   width: var(--mask-width);
+  background: repeating-linear-gradient(45deg, #fff, #fff 10px, #808080 10px, #808080 20px);
 }
 
 .workshop-output--compare__input {
