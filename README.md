@@ -17,6 +17,8 @@ writing your own programs, one exercise at a time.
 
 Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh`.
 
+Open the workshop at [http://localhost:3000/](http://localhost:3000/).
+
 ## Dev Setup
 
 There are three main supported ways:
