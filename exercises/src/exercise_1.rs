@@ -1,4 +1,4 @@
-use photon::PhotonImage;
+use photon::{PhotonImage, transform::{SamplingFilter, resize}};
 
 /// Welcome to the Wasm Image Transformation Workshop!
 ///
@@ -10,8 +10,8 @@ use photon::PhotonImage;
 pub fn transform(img: &PhotonImage, target_width: u32) -> PhotonImage {
     // Calculate aspect ratio
     let aspect_ratio = img.get_width() as f32 / img.get_height() as f32;
-    let _target_height = (target_width as f32 / aspect_ratio) as u32;
+    let target_height = (target_width as f32 / aspect_ratio) as u32;
 
-    // import and call the resize function here!
-    todo!("call the resize function!")
+    // we could use `return img;` but Rust automatically returns the last block's value in a function. How nice!
+    resize(&img, target_width, target_height, SamplingFilter::Nearest)
 }
