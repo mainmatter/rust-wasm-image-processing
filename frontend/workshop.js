@@ -122,3 +122,22 @@ async function loadImage(imageUrl) {
   let buffer = await response.arrayBuffer();
   return new Uint8Array(buffer);
 }
+
+// ----- IMAGE COMPARISON SLIDER (https://codepen.io/stanko/pen/myddXKm) ----- //
+
+const compareView = document.querySelector(".workshop-output--compare");
+const compareViewSlider = document.querySelector(".workshop-output--compare input");
+
+compareViewSlider.addEventListener("input", () => {
+  compareView.style.setProperty("--mask-width", `${compareViewSlider.value}%`);
+});
+
+compareView.style.setProperty("--mask-width", `${compareViewSlider.value}%`);
+
+const imageUrl = document.querySelector("#imageUrl");
+const inputImage = document.querySelector("#imageInput");
+
+imageUrl.addEventListener("input", () => {
+  inputImage.src = imageUrl.value;
+});
+inputImage.src = imageUrl.value;
