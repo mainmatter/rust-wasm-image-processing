@@ -81,11 +81,30 @@
 
 .workshop-output--compare {
   min-height: 30em;
+  border-radius: 4px;
 }
 
-.workshop-output--compare__image-one {
+.workshop-output--compare__image-two {
   width: 100%;
   display: block;
+}
+
+#imageOutput:not(src) {
+  position: relative;
+  width: 100%;
+  min-height: 20em;
+}
+
+.workshop-output--compare__image-two:not(src):before, #imageOutput:not(src):before {
+  content: " ";
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
 }
 
 .workshop-output--compare__image-one, .workshop-output--compare__image-two {

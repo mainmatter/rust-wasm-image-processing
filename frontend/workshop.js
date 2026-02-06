@@ -128,19 +128,27 @@ async function loadImage(imageUrl) {
 const compareView = document.querySelector(".workshop-output--compare");
 const compareViewSlider = document.querySelector(".workshop-output--compare input");
 
-compareViewSlider.addEventListener("input", () => {
+if (compareView && compareViewSlider) {
+  compareViewSlider.addEventListener("input", () => {
+    compareView.style.setProperty("--mask-width", `${compareViewSlider.value}%`);
+  });
+  
   compareView.style.setProperty("--mask-width", `${compareViewSlider.value}%`);
-});
-
-compareView.style.setProperty("--mask-width", `${compareViewSlider.value}%`);
+}
 
 const imageUrl = document.querySelector("#imageUrl");
 const inputImage = document.querySelector("#imageInput");
 const outputImage = document.querySelector("#imageOutput");
 
-imageUrl.addEventListener("input", () => {
-  inputImage.src = imageUrl.value;
+if (imageUrl) {
+  imageUrl.addEventListener("input", () => {
+    if (inputImage) {
+      inputImage.src = imageUrl.value;
+    }
+    outputImage.src = "";
+  });
+  if (inputImage) {
+    inputImage.src = imageUrl.value;
+  }
   outputImage.src = "";
-});
-inputImage.src = imageUrl.value;
-outputImage.src = "";
+}
