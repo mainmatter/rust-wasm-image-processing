@@ -79,14 +79,18 @@
   pointer-events: none;
 }
 
-.workshop-output--compare__image-one, .workshop-output--compare__image-two {
-  max-width: unset !important;
+.workshop-output--compare {
+  min-height: 30em;
 }
 
 .workshop-output--compare__image-one {
   width: 100%;
-  min-height: 30em;
   display: block;
+}
+
+.workshop-output--compare__image-one, .workshop-output--compare__image-two {
+  object-fit: contain;
+  max-width: calc(750px - 4em - 6px) !important;
 }
 
 .workshop-output--compare__mask {
@@ -101,7 +105,6 @@
 }
 
 .workshop-output--compare__image-two {
-  height: 100%;
   width: auto;
 }
 
@@ -165,6 +168,18 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2px;
+}
+
+.workshop-output--compare__labels {
+  display: flex;
+  justify-content: space-around;
+}
+
+.workshop-output--compare__labels p {
+  margin: 0;
+  margin: .25em 0 0 0;
+  font-size: 75%;
+  font-weight: 700;
 }
 
 .workshop-output {

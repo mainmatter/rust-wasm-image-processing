@@ -136,8 +136,11 @@ compareView.style.setProperty("--mask-width", `${compareViewSlider.value}%`);
 
 const imageUrl = document.querySelector("#imageUrl");
 const inputImage = document.querySelector("#imageInput");
+const outputImage = document.querySelector("#imageOutput");
 
 imageUrl.addEventListener("input", () => {
   inputImage.src = imageUrl.value;
+  outputImage.src = "";
 });
 inputImage.src = imageUrl.value;
+outputImage.src = "";
