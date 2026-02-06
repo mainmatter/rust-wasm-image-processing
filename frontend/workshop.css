@@ -6,8 +6,8 @@
     background: var(--quote-bg);
 }
 
-.workshop-image-url {
-    width: 100%;
+.workshop-image-url, .workshop-image-param {
+    width: calc(100% - 1em);
     padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid var(--quote-border);

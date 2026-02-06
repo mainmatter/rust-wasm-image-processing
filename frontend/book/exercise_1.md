@@ -93,7 +93,7 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
 
 <div class="workshop-exercise">
     <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
-    <input type="number" class="workshop-image-url" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
+    <input type="number" class="workshop-image-param" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_1', new URLSearchParams({ width: document.getElementById('targetWidth').value }))">
             Backend
