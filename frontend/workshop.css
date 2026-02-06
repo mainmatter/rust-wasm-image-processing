@@ -79,14 +79,14 @@
     border-radius: 4px;
 }
 
-.workshop-output img[src=""] {
+.workshop-output img:not(src) {
     display: block;
     position: relative;
     width: 100%;
     min-height: 20em;
 }
 
-.workshop-output img[src=""]::before {
+.workshop-output img:not(src):before {
   content: " ";
   display: block;
 
@@ -106,7 +106,7 @@ label {
   font-weight: 700;
 }
 
-.workshop-output img[src=""]::after {
+.workshop-output img:not(src):after {
   content: attr(alt);
   display: block;
   position: relative;
@@ -116,6 +116,12 @@ label {
   color: rgb(100, 100, 100);
   font-family: var(--mono-font);
   font-size: 0.9em;
+}
+
+@-moz-document url-prefix() {
+  .workshop-output img:not(src):after {
+    content: " ";
+  }
 }
 
 /* Comparison table styling */
