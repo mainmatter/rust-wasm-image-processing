@@ -1,4 +1,10 @@
-use axum::{Router, extract::Query, http::header, response::IntoResponse, routing::get};
+use axum::{
+    Router,
+    extract::Query,
+    http::header,
+    response::{Html, IntoResponse},
+    routing::get,
+};
 use photon::PhotonImage;
 use serde::Deserialize;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
@@ -30,7 +36,9 @@ async fn main() {
 async fn root() -> impl IntoResponse {
     tracing::info!("Called root");
 
-    "This is the backend of rust-wasm-image-processing. To get started with the exercises, you want to browse the frontend at http://0.0.0.0:3000 (not 3001)."
+    Html(
+        "This is the <i>backend</i> of rust-wasm-image-processing<br><br>To get started with the exercises, browse the <i>frontend</i> at <a href=\"http://0.0.0.0:3000\">http://0.0.0.0:3000</a>",
+    )
 }
 
 #[tracing::instrument]
