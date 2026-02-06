@@ -1,4 +1,7 @@
-use photon::{PhotonImage, transform::{SamplingFilter, resize}};
+use photon::{
+    PhotonImage,
+    transform::{SamplingFilter, resize},
+};
 
 /// Welcome to the Wasm Image Transformation Workshop!
 ///
