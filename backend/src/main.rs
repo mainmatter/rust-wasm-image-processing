@@ -9,6 +9,7 @@ async fn main() {
     tracing_subscriber::fmt().init();
 
     let app = Router::new()
+        .route("/", get(root))
         .route("/ping", get(ping))
         .route("/exercise_1", get(exercise_1))
         .route("/exercise_2", get(exercise_2))
@@ -23,6 +24,13 @@ async fn main() {
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
+}
+
+#[tracing::instrument]
+async fn root() -> impl IntoResponse {
+    tracing::info!("Called root");
+
+    "This is the backend of rust-wasm-image-processing. To get started with the exercises, you want to browse the frontend at http://0.0.0.0:3000 (not 3001)."
 }
 
 #[tracing::instrument]
