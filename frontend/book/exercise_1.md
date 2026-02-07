@@ -93,7 +93,7 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
 
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" />
     <label for="targetWidth">Target width</label>
     <input type="number" class="workshop-image-param" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
     <div class="workshop-buttons">
@@ -107,7 +107,17 @@ The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nea
     </div>
     <div class="workshop-output">
         <h4>Output <span id="timing-info"></span></h4>
-        <img id="imageOutput" src="" alt="Transformed image will appear here" />
+        <div class="workshop-output--compare" style="overflow: visible;">
+            <img id="imageOutput" class="workshop-output--compare__image-one">
+            <div class="workshop-output--compare__mask">
+                <img id="imageInput" class="workshop-output--compare__image-two" />
+            </div>
+            <div class="workshop-output--compare__separator">
+                {{#include includes/slider-handle.svg}}
+            </div>
+            <input class="workshop-output--compare__input" type="range" min="0" step="0.5" max="100" value="50">
+        </div>
+        <div class="workshop-output--compare__labels"><p>Input image</p><p>Output image</p></div>
     </div>
 </div>
 
