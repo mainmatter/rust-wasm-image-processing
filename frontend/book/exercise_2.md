@@ -192,6 +192,8 @@ This might feel strict, but it catches bugs at compile time that JavaScript woul
 
 👉 Open `exercises/src/exercise_2.rs` and implement the `transform` function using `match`.
 
+Don't forget to run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
+
 You'll want to support several filters from the [photon filters module](https://docs.rs/photon-rs/latest/photon_rs/filters/index.html). Here are some to get you started:
 
 - `"cali"` → `photon::filters::cali(&mut img)`

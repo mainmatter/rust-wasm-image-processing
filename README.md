@@ -15,7 +15,9 @@ writing your own programs, one exercise at a time.
 
 ## Getting Started
 
-Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh`.
+Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh` to open the book and start the backend. The serve script will automatically build your Rust code, and rerun it when you change things.
+
+With the frontend running navigate to `http://localhost:3000` in order to get started with the first exercise!
 
 Open the workshop at [http://localhost:3000/](http://localhost:3000/).
 
@@ -25,7 +27,7 @@ There are three main supported ways:
 
 ### Dev Container
 
-A pre-maid dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
+A pre-made dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
 
 ### Manual Setup
 

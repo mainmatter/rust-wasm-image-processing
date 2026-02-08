@@ -99,6 +99,8 @@ The closure receives two images and returns one combined image. Sound familiar? 
 
 👉 Copy your image-stitching logic from Exercise 3 into the `reduce` closure.
 
+Don't forget to run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
+
 ## Why `unwrap()`?
 
 The `.reduce()` returns an `Option` because the input might be empty (nothing to reduce). The `.unwrap()` says "I know the input won't be empty."

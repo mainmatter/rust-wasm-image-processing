@@ -47,7 +47,7 @@ Each exercise is structured as a Rust module that contains a single `transform` 
 
 ## Getting Started
 
-Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh`.
+Go through the [Dev Setup](#dev-setup) below and then **run `./serve.sh`** to open the book and start the backend. The serve script will automatically build your Rust code, and rerun it when you change things!
 
 ## Dev Setup
 
@@ -55,7 +55,7 @@ There are three main supported ways:
 
 ### Dev Container
 
-A pre-maid dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
+A pre-made dev container is available. (We especially recommend this if your editor already supports it, e.g. VS Code.)
 
 ### Manual Setup
 
