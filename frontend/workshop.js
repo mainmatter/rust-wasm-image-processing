@@ -32,10 +32,8 @@ async function perform(what) {
 window.triggerBackend = async function triggerBackend(url, params = {}) {
   perform(async () => {
     let imageUrl = document.querySelector("#imageUrl").value;
-
     if (!imageUrl) {
-      console.error("must specify image");
-      return;
+      throw new Error("image url cannot be blank");
     }
 
     const query = new URLSearchParams({
@@ -59,10 +57,8 @@ window.triggerWasm = async function triggerWasm(endpoint, ...params) {
     await wasm_bindgen();
 
     let imageUrl = document.querySelector("#imageUrl").value;
-
     if (!imageUrl) {
-      console.error("must specify image");
-      return;
+      throw new Error("image url cannot be blank");
     }
 
     const imageData = await loadImage(imageUrl);
@@ -76,10 +72,8 @@ window.triggerBackendExercise3 = async function triggerBackendExercise3() {
   perform(async () => {
     let leftUrl = document.querySelector("#imageUrlLeft").value;
     let rightUrl = document.querySelector("#imageUrlRight").value;
-
     if (!leftUrl || !rightUrl) {
-      console.error("must specify image");
-      return;
+      throw new Error("image url cannot be blank");
     }
 
     const queryString = new URLSearchParams({
@@ -100,10 +94,8 @@ window.triggerWasmExercise3 = async function triggerWasmExercise3() {
 
     let leftUrl = document.querySelector("#imageUrlLeft").value;
     let rightUrl = document.querySelector("#imageUrlRight").value;
-
     if (!leftUrl || !rightUrl) {
-      console.error("must specify image");
-      return;
+      throw new Error("image url cannot be blank");
     }
 
     const [leftData, rightData] = await Promise.all([
