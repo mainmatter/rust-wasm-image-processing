@@ -188,23 +188,6 @@ error[E0004]: non-exhaustive patterns: `&_` not covered
 
 This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro crashes the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
 
-## Your Task
-
-👉 Open `exercises/src/exercise_2.rs` and implement the `transform` function using `match`.
-
-Don't forget to run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
-
-You'll want to support several filters from the [photon filters module](https://docs.rs/photon-rs/latest/photon_rs/filters/index.html). Here are some to get you started:
-
-- `"cali"` → `photon::filters::cali(&mut img)`
-- `"dramatic"` → `photon::filters::dramatic(&mut img)`
-- `"duotone_horizon"` → `photon::filters::duotone_horizon(&mut img)`
-- `"lofi"` → `photon::filters::lofi(&mut img)`
-- `"golden"` → `photon::filters::golden(&mut img)`
-- `"pastel_pink"` → `photon::filters::pastel_pink(&mut img)`
-
-👉 Test your implementation using the buttons below. Try different filter names!
-
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
     <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" />
