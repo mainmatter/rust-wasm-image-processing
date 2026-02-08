@@ -32,7 +32,6 @@ async function perform(what) {
 window.triggerBackend = async function triggerBackend(url, params = {}) {
   perform(async () => {
     let imageUrl = document.querySelector("#imageUrl").value;
-    let imageElement = document.querySelector("#imageOutput");
 
     if (!imageUrl) {
       console.error("must specify image");
