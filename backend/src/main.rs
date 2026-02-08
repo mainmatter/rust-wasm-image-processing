@@ -16,7 +16,6 @@ async fn main() {
 
     let app = Router::new()
         .route("/", get(root))
-        .route("/ping", get(ping))
         .route("/exercise_1", get(exercise_1))
         .route("/exercise_2", get(exercise_2))
         .route("/exercise_3", get(exercise_3))
@@ -39,13 +38,6 @@ async fn root() -> impl IntoResponse {
     Html(
         "This is the <i>backend</i> of rust-wasm-image-processing<br><br>To get started with the exercises, browse the <i>frontend</i> at <a href=\"http://0.0.0.0:3000\">http://0.0.0.0:3000</a>",
     )
-}
-
-#[tracing::instrument]
-async fn ping() -> impl IntoResponse {
-    tracing::info!("Called ping");
-
-    "Pong!"
 }
 
 #[derive(Deserialize)]
