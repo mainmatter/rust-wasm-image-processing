@@ -7,9 +7,6 @@ src = "book"
 build-dir = "dist"
 extra-watch-dirs = ["../transformers"]
 
-# [output.wasm-pack]
-# command = "wasm-pack build --target no-modules --out-dir dist --no-typescript"
-
 [output.html]
 additional-css = ["workshop.css", "wasm/frontend_bg.wasm"]
 additional-js = ["workshop.js", "wasm/frontend.js"]
