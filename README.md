@@ -15,7 +15,7 @@ writing your own programs, one exercise at a time.
 
 ## Getting Started
 
-Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh` to open the book and start the backend. The serve script will automatically build your Rust code, and rerun it when you change things.
+Go through the [Dev Setup](#dev-setup) below and then run `./serve.sh` to open the book and start the backend. The serve script will automatically build your Rust code, and rebuild it when you change things.
 
 With the frontend running navigate to `http://localhost:3000` in order to get started with the first exercise!
 

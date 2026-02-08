@@ -142,13 +142,12 @@ As a rule of thumb: **use `&str` when you just need to read string data**. Only 
 Rust's `match` is like JavaScript's `switch`, but safer. Here's our filter selector:
 
 ```rust,noplayground
-pub fn transform(mut img: PhotonImage, filter: &str) -> PhotonImage {
+pub fn transform(img: &mut PhotonImage, filter: &str) {
     match filter {
-        "cali" => photon::filters::cali(&mut img),
-        "dramatic" => photon::filters::dramatic(&mut img),
+        "cali" => photon::filters::cali(img),
+        "dramatic" => photon::filters::dramatic(mg),
         _ => panic!("no such filter"),
     }
-    img
 }
 ```
 
@@ -160,13 +159,15 @@ Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — 
 error[E0004]: non-exhaustive patterns: `&_` not covered
 ```
 
-This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro terminates the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
+This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro terminates the program with an error message — similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
 
 ## Your Task
 
 👉 Open `exercises/src/exercise_2.rs` and implement the `transform` function using `match`.
 
-You'll want to support several filters from the [photon filters module](https://docs.rs/photon-rs/latest/photon_rs/filters/index.html). Here are some to get you started:
+Don't forget to run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
+
+You'll want to support several filters from the [photon filters](https://docs.rs/photon-rs/latest/photon_rs/filters/index.html) module. Here are some to get you started:
 
 - `"cali"` → `photon::filters::cali(img)`
 - `"dramatic"` → `photon::filters::dramatic(img)`
@@ -178,7 +179,7 @@ You'll want to support several filters from the [photon filters module](https://
 
 👉 Test your implementation using the buttons below. Try different filter names!
 
-Each line inside the `match` is called an **arm**: a pattern on the left, code to run on the right, separated by `=>`. The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
+Each line inside the `match` is called an **arm**: a pattern on the left, and code to run on the right, separated by `=>`. The `_` is a **wildcard** that matches anything (like `default:` in JavaScript).
 
 Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — each arm is self-contained. More importantly, Rust **requires** you to handle every possible case. Try removing the `_ => panic!(...)` line and the compiler will reject your code:
 

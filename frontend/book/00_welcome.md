@@ -47,7 +47,7 @@ Each exercise is structured as a Rust module that contains a single `transform` 
 
 ## Getting Started
 
-Go through the [Dev Setup](#dev-setup) below and then **run `./serve.sh`** to open the book and start the backend. The serve script will automatically build your Rust code, and rerun it when you change things!
+Go through the [Dev Setup](#dev-setup) below and then **run `./serve.sh`** to open the book and start the backend. The serve script will automatically build your Rust code, and rebuild it when you change things!
 
 ## Dev Setup
 

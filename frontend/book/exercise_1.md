@@ -1,6 +1,6 @@
 # Exercise 1: Your First Transformation
 
-In this exercise, you'll write your first Rust function—a transformation that resizes an image to a given width while maintaining its aspect ratio.
+In this exercise, you'll write your first Rust function — a transformation that resizes an image to a given width while maintaining its aspect ratio.
 
 <div class="workshop-objectives">
 
