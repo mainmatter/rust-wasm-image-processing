@@ -84,7 +84,7 @@ In Rust, references are created with the `&` symbol and come in two flavors:
 fn main() {
     let name = String::from("cali");
     
-    other_function(&name); // `other_function` borrows `name`, doesnt take ownership
+    other_function(&name); // `other_function` borrows `name`, doesn't take ownership
     
     // we now **can** continue to use `name` because we still have ownership!
     // just just temporarily lend out access to it
@@ -136,6 +136,10 @@ We use `&str` for the filter name because:
 3. **It's more efficient** — Passing a reference is cheap (it's just a pointer). Passing an owned `String` would require either moving ownership or cloning the data.
 
 As a rule of thumb: **use `&str` when you just need to read string data**. Only use `String` or `&mut str` when you absolutely know you need to own or modify the string.
+
+### What about `&String`?
+
+The keen reader might have noticed that there is actually a fourth combination we could have used, and that's `&String`. While it does technically exist, it's not very useful. It represents a borrow of an owned `String`, meaning the caller needs to own the allocation. But since we only have an **immutable** reference to it anyway, we still cannot manipulate the string, only read from it. Additionally, anything you can do with a `&String` you can also do with a `&str`, so it's the one used in practice.
 
 ## Introducing `match`
 
