@@ -245,9 +245,9 @@ Don't forget to run **`./serve.sh`** to open the frontend, start the backend and
 
 <div class="workshop-exercise">
     <label for="imageUrlLeft">Left input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" />
     <label for="imageUrlRight">Right input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" value="https://picsum.photos/1800/1600" />
+    <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackendExercise3()">
             Backend
