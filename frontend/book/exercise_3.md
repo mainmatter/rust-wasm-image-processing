@@ -225,7 +225,7 @@ assert!(left.get_width() > 0);
 assert!(right.get_width() > 0);
 ```
 
-The `assert!` macro checks a condition and panics if it's false. Unlike exceptions in other languages, a panic in Rust is unrecoverable in the current thread—the program crashes with an error message.
+The `assert!` macro checks a condition and panics if it's false. Unlike exceptions in other languages, a panic in Rust is unrecoverable in the current thread—the program terminates with an error message.
 
 Assertions serve two purposes:
 

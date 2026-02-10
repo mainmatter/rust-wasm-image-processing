@@ -191,7 +191,7 @@ Unlike JavaScript's `switch`, there's no fall-through and no `break` needed — 
 error[E0004]: non-exhaustive patterns: `&_` not covered
 ```
 
-This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro crashes the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
+This might feel strict, but it catches bugs at compile time that JavaScript would only reveal at runtime. The `panic!` macro terminates the program with an error message—similar to throwing an uncaught exception. In Exercise 4, we'll learn about Rust's `Result` type for more graceful error handling.
 
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
