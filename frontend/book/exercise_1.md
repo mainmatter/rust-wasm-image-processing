@@ -68,8 +68,8 @@ This strictness prevents subtle bugs. In JavaScript, `0.1 + 0.2 !== 0.3` can sur
 
 To resize while maintaining aspect ratio, we need to:
 
-1. Calculate the original aspect ratio (height ÷ width)
-2. Multiply the new width by this ratio to get the new height
+1. Calculate the original aspect ratio (width ÷ height)
+2. Divide the new width by this ratio to get the new height
 3. Call the `resize` function
 
 ```rust
