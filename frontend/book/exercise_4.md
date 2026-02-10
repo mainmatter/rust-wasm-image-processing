@@ -112,7 +112,7 @@ The `.reduce()` returns an `Option` because the input might be empty (nothing to
 
 ## Your Task
 
-👉 Open `exercises/src/exercise_4.rs` and implement the `transform` function using iterators and the iterator combinators provided by the standard library. Copy the code you wrote in Exercise 3 for stitching together 2 images, you will need it!
+👉 Open `exercises/src/exercise_4.rs` and implement the `transform` function using iterators and the iterator combinators provided by the standard library. Copy the code you wrote in Exercise 1 for resizing images and Exercise 3 for stitching together 2 images, you will need it!
 
 Once you're done we'll look at parallelism and high performance code!
 
