@@ -148,6 +148,8 @@ struct ImageProxyParams {
     url: String,
 }
 
+// A proxy endpoint used in `workshop.js` for fetching images
+// working around browser CORS restrictions.
 #[tracing::instrument]
 async fn image_proxy(
     Query(ImageProxyParams { url }): Query<ImageProxyParams>,
