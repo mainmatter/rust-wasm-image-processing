@@ -250,10 +250,10 @@ Don't forget to run **`./serve.sh`** to open the frontend, start the backend and
     <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackendExercise3()">
-            Backend
+            Run on Backend
         </button>
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasmExercise3()">
-            Wasm
+            Run in Wasm
         </button>
         {{#include includes/spinner.svg}}
     </div>

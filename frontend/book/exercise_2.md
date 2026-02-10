@@ -208,10 +208,10 @@ This might feel strict, but it catches bugs at compile time that JavaScript woul
     </select>
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_2', new URLSearchParams({ filter: document.getElementById('filterSelect').value }))">
-            Backend
+            Run on Backend
         </button>
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_2', document.getElementById('filterSelect').value)">
-            Wasm
+            Run in Wasm
         </button>
         {{#include includes/spinner.svg}}
     </div>

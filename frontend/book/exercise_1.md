@@ -87,7 +87,7 @@ Notice how we cast to `f32` for the division (to avoid integer truncation), then
 
 The `SamplingFilter::Nearest` argument specifies the resampling algorithm—`Nearest` is fast, while other options like `Lanczos3` produce smoother results. The `::` syntax accesses a variant of an **enum** (enumeration)—we'll explore enums in Exercise 2.
 
-👉 Implement the `transform` function in `exercises/src/exercise_1.rs` and test it by clicking the **Backend** and **Wasm** buttons.
+👉 Implement the `transform` function in `exercises/src/exercise_1.rs` and test it by clicking the **Run on Backend** and **Run in Wasm** buttons.
 
 Run **`./serve.sh`** to open the frontend, start the backend and serve your exercises.
 
@@ -100,10 +100,10 @@ Run **`./serve.sh`** to open the frontend, start the backend and serve your exer
     <input type="number" class="workshop-image-param" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackend('exercise_1', new URLSearchParams({ width: document.getElementById('targetWidth').value }))">
-            Backend
+            Run on Backend
         </button>
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_1', parseInt(document.getElementById('targetWidth').value))">
-            Wasm
+            Run in Wasm
         </button>
         {{#include includes/spinner.svg}}
     </div>
