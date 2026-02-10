@@ -67,6 +67,14 @@
   border: 1px solid rgb(0 0 0 / 0.05);
 }
 
+.workshop-output--compare .original-size {
+  width: auto;
+  object-fit: unset;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
 .workshop-output--compare__separator {
   position: absolute;
   top: 0;
