@@ -10,6 +10,6 @@ pub fn transform(img: &mut PhotonImage, filter: &str) {
         "golden" => photon::filters::golden(img),
         "lofi" => photon::filters::lofi(img),
         "pastel_pink" => photon::filters::pastel_pink(img),
-        _ => panic!("no such filter"),
+        _ => panic!("no such filter: {filter}"),
     }
 }
