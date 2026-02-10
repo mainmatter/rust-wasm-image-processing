@@ -95,7 +95,7 @@ Run **`./serve.sh`** to open the frontend, start the backend and serve your exer
 
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" />
+    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://heute-at-prod-images.imgix.net/2025/03/20/8d2320fc-1439-49c4-96dd-3e163818a501.png?rect=0%2C235%2C937%2C527&auto=format" />
     <label for="targetWidth">Target width</label>
     <input type="number" class="workshop-image-param" id="targetWidth" placeholder="Target width" value="400" min="1" max="4000" />
     <div class="workshop-buttons">
