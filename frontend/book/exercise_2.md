@@ -149,8 +149,8 @@ Rust's `match` is like JavaScript's `switch`, but safer. Here's our filter selec
 pub fn transform(img: &mut PhotonImage, filter: &str) {
     match filter {
         "cali" => photon::filters::cali(img),
-        "dramatic" => photon::filters::dramatic(mg),
-        _ => panic!("no such filter"),
+        "dramatic" => photon::filters::dramatic(img),
+        _ => panic!("no such filter: {filter}"),
     }
 }
 ```
