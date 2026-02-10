@@ -20,6 +20,7 @@ async fn main() {
         .route("/exercise_2", get(exercise_2))
         .route("/exercise_3", get(exercise_3))
         .route("/exercise_4", get(exercise_4))
+        .route("/image_proxy", get(image_proxy))
         .layer(TraceLayer::new_for_http());
 
     // We must use 0.0.0.0 as hostname for this to work in a dev container.
@@ -140,6 +141,34 @@ async fn exercise_4(
     ];
 
     (headers, output_bytes)
+}
+
+#[derive(Deserialize)]
+struct ImageProxyParams {
+    url: String,
+}
+
+#[tracing::instrument]
+async fn image_proxy(
+    Query(ImageProxyParams { url }): Query<ImageProxyParams>,
+) -> impl IntoResponse {
+    let response = reqwest::get(url).await.unwrap();
+    let content_type = response
+        .headers()
+        .get("Content-Type")
+        .unwrap()
+        .to_str()
+        .unwrap()
+        .to_owned();
+    let data = response.bytes().await.unwrap();
+
+    let headers = [
+        (header::CONTENT_TYPE, content_type),
+        (header::ACCESS_CONTROL_ALLOW_ORIGIN, "*".to_owned()),
+        (header::ACCESS_CONTROL_ALLOW_METHODS, "GET".to_owned()),
+    ];
+
+    (headers, data)
 }
 
 async fn fetch_image(image_url: &str) -> PhotonImage {

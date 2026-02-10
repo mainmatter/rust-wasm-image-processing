@@ -109,7 +109,8 @@ window.triggerWasmExercise3 = async function triggerWasmExercise3() {
 };
 
 async function loadImage(imageUrl) {
-  let response = await fetch(imageUrl);
+  let proxiedImageUrl = `http://localhost:3001/image_proxy?url=${encodeURI(imageUrl)}`;
+  let response = await fetch(proxiedImageUrl);
   let buffer = await response.arrayBuffer();
   return new Uint8Array(buffer);
 }
