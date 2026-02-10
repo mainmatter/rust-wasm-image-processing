@@ -180,10 +180,10 @@ Consult the documentation for [rayons methods](https://docs.rs/rayon/latest/rayo
     <input type="text" class="workshop-image-param" id="imageWidths" placeholder="widths of thumbnail images" value="50, 100, 200, 400, 800, 1600" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="{ triggerBackend('exercise_4', new URLSearchParams(document.getElementById('imageWidths').value.split(',').map(width => ['width', width.trim()]))); }">
-            Backend
+            Run on Backend
         </button>
         <button class="workshop-btn workshop-btn-wasm" onclick="triggerWasm('exercise_4', document.getElementById('imageWidths').value.split(','))">
-            Wasm
+            Run in Wasm
         </button>
         {{#include includes/spinner.svg}}
     </div>
