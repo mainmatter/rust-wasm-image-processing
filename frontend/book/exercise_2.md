@@ -195,7 +195,7 @@ This might feel strict, but it catches bugs at compile time that JavaScript woul
 
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" />
+    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://media.istockphoto.com/id/530803356/photo/tapir-in-water.jpg?s=612x612&w=0&k=20&c=UZW7cWXUGoZBRljYZkAKNUjYPMEfKEp5I06dVyb7oa8=" />
     <label for="filterSelect">Filter</label>
     <select id="filterSelect" class="workshop-select">
     <option value="cali">cali</option>

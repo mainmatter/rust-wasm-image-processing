@@ -245,9 +245,9 @@ Don't forget to run **`./serve.sh`** to open the frontend, start the backend and
 
 <div class="workshop-exercise">
     <label for="imageUrlLeft">Left input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" />
+    <input type="text" class="workshop-image-url" id="imageUrlLeft" placeholder="URL of source image" value="https://c02.purpledshub.com/uploads/sites/41/2025/01/psychrolutes-marcidus-blobfish.jpg?webp=1&w=1200" />
     <label for="imageUrlRight">Right input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" />
+    <input type="text" class="workshop-image-url" id="imageUrlRight" placeholder="URL of source image" value="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3VnbGllc3QtYW5pbWFscy01LmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6ODI4fX19" />
     <div class="workshop-buttons">
         <button class="workshop-btn workshop-btn-backend" onclick="triggerBackendExercise3()">
             Run on Backend

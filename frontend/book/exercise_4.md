@@ -175,7 +175,7 @@ Consult the documentation for [rayons methods](https://docs.rs/rayon/latest/rayo
 
 <div class="workshop-exercise">
     <label for="imageUrl">Input image (URL)</label>
-    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" />
+    <input type="text" class="workshop-image-url" id="imageUrl" placeholder="URL of source image" value="https://c02.purpledshub.com/uploads/sites/41/2025/01/Naked-Mole-Rat.jpg?webp=1&w=1200" />
     <label for="imageWidths">Image widths (comma-separated)</label>
     <input type="text" class="workshop-image-param" id="imageWidths" placeholder="widths of thumbnail images" value="50, 100, 200, 400, 800, 1600" />
     <div class="workshop-buttons">
