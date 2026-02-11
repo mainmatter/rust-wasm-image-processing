@@ -2,7 +2,7 @@
 
 Our little tour of Rust ends here.
 
-There are many things we've seen any even more things we haven't yet. Rust is a language with a large surface area, and an even larger ecosystem! 
+There are many things we've seen any even more things we haven't yet. Rust is a language with a large surface area, and an even larger ecosystem!
 
 Don't let this scare you, though: there's no need to learn everything. You'll pick up whatever is necessary while working on your projects.
 
