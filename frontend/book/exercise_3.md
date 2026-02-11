@@ -64,12 +64,12 @@ a.push(12); // this does not exist!!
 let mut v = Vec::new();
 
 // that we can then push elements to
-numbers.push(1);
-numbers.push(2);
-numbers.push(3);
+v.push(1);
+v.push(2);
+v.push(3);
 
 // we can also still manipulate them of course!
-a[0] = 1;
+v[0] = 42;
 ```
 
 Vectors are of course much convenient and closer to collections you might be familiar with from other languages. This convenience come at a
