@@ -25,9 +25,10 @@ if ! command -v watchexec >/dev/null 2>&1; then
   exit 1
 fi
 
+mdbook serve --hostname 0.0.0.0 -p 3000 frontend &
+
+# Ensure that SIGINT is forwarded to mdbook, else it keeps running.
+trap "kill $!" INT TERM
+
 # We must bind to 0.0.0.0 for this to work in a dev container.
-watchexec --watch exercises --watch frontend/src -r 'wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && mdbook serve --hostname 0.0.0.0 -p 3000 frontend' &
-
-watchexec --watch exercises --watch  backend/src -r 'cargo run --target-dir target-serve --bin backend'
-
-wait
+watchexec -r 'cargo build && wasm-pack build frontend --target no-modules --out-dir wasm --no-typescript --no-pack --dev && cargo run --bin backend'
