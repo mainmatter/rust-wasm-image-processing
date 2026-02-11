@@ -189,7 +189,7 @@ Consult the documentation for [rayons methods](https://docs.rs/rayon/latest/rayo
     </div>
     <div class="workshop-output">
         <h4>Output <span id="timing-info"></span></h4>
-        <div class="workshop-output--noncompare">
+        <div class="workshop-output--noncompare workshop-output--orig-size">
             <img id="imageOutput" />
         </div>
     </div>
