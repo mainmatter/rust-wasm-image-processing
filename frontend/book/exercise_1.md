@@ -109,17 +109,9 @@ Run **`./serve.sh`** to open the frontend, start the backend and serve your exer
     </div>
     <div class="workshop-output">
         <h4>Output <span id="timing-info"></span></h4>
-        <div class="workshop-output--compare" style="overflow: visible;">
-            <img id="imageOutput" class="workshop-output--compare__image-one original-size">
-            <div class="workshop-output--compare__mask">
-                <img id="imageInput" class="workshop-output--compare__image-two original-size" />
-            </div>
-            <div class="workshop-output--compare__separator">
-                {{#include includes/slider-handle.svg}}
-            </div>
-            <input class="workshop-output--compare__input" type="range" min="0" step="0.5" max="100" value="50">
+        <div class="workshop-output--noncompare">
+            <img id="imageOutput" />
         </div>
-        <div class="workshop-output--compare__labels"><p>Input image</p><p>Output image</p></div>
     </div>
 </div>
 

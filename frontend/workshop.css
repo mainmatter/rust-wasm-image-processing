@@ -1,60 +1,63 @@
 .workshop-exercise {
-    margin: 1.5em 0;
-    padding: 1em;
-    border: 1px solid var(--quote-border);
-    border-radius: 4px;
-    background: var(--quote-bg);
+  margin: 1.5em 0;
+  padding: 1em;
+  border: 1px solid var(--quote-border);
+  border-radius: 4px;
+  background: var(--quote-bg);
 }
 
-.workshop-image-url, .workshop-image-param, .workshop-select {
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid var(--quote-border);
-    border-radius: 4px;
-    font-family: var(--mono-font);
-    font-size: 0.9em;
-    background: var(--bg);
-    color: var(--fg);
+.workshop-image-url,
+.workshop-image-param,
+.workshop-select {
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid var(--quote-border);
+  border-radius: 4px;
+  font-family: var(--mono-font);
+  font-size: 0.9em;
+  background: var(--bg);
+  color: var(--fg);
 }
 
-.workshop-image-url, .workshop-image-param {
-    width: calc(100% - 1em);
+.workshop-image-url,
+.workshop-image-param {
+  width: calc(100% - 1em);
 }
 
 .workshop-buttons {
-    display: flex;
-    gap: 0.5em;
-    margin: 1em 0;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 0.5em;
+  margin: 1em 0;
+  flex-wrap: wrap;
 }
 
 .workshop-btn {
-    display: inline-block;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
 
 .workshop-btn-backend {
-    background-color: #3273dc;
-    color: white;
+  background-color: #3273dc;
+  color: white;
 }
 
 .workshop-btn-backend:hover {
-    background-color: #2366d1;
+  background-color: #2366d1;
 }
 
 .workshop-btn-wasm {
-    background-color: #48c774;
-    color: white;
+  background-color: #48c774;
+  color: white;
 }
 
 .workshop-btn-wasm:hover {
-    background-color: #3ec46d;
+  background-color: #3ec46d;
 }
 
 /* ----- IMAGE COMPARISON SLIDER (https://codepen.io/stanko/pen/myddXKm) ----- */
@@ -87,11 +90,16 @@
   pointer-events: none;
 }
 
-.workshop-output--compare, .workshop-output--noncompare {
+.workshop-output--compare,
+.workshop-output--noncompare {
   min-height: 30em;
   border-radius: 4px;
   background: repeating-conic-gradient(#808080 0 25%, #fff 0 50%) 50% / 20px 20px;
   border: 1px solid rgb(0 0 0 / 0.05);
+}
+
+.workshop-output--noncompare {
+  overflow: hidden;
 }
 
 .workshop-output--compare__image-one {
@@ -103,9 +111,14 @@
   display: block;
 }
 
-.workshop-output--compare__image-one, .workshop-output--compare__image-two {
+.workshop-output--compare__image-one,
+.workshop-output--compare__image-two {
   object-fit: contain;
   max-width: calc(var(--content-max-width) - 4em - 6px) !important;
+}
+
+.workshop-output--noncompare img {
+  max-width: none;
 }
 
 .workshop-output--compare__mask {
@@ -194,19 +207,19 @@
 }
 
 .workshop-output {
-    margin-top: 1em;
-    padding: 1em;
-    background: var(--bg);
-    border: 1px solid var(--quote-border);
-    border-radius: 4px;
-    text-align: center;
+  margin-top: 1em;
+  padding: 1em;
+  background: var(--bg);
+  border: 1px solid var(--quote-border);
+  border-radius: 4px;
+  text-align: center;
 }
 
 .workshop-output h4 {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-    font-size: 1em;
-    color: var(--fg);
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: 1em;
+  color: var(--fg);
 }
 
 label {
@@ -224,41 +237,41 @@ label {
 
 /* Comparison table styling */
 .workshop-comparison {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
 }
 
 .workshop-comparison th,
 .workshop-comparison td {
-    padding: 0.75em;
-    text-align: left;
-    border: 1px solid var(--quote-border);
+  padding: 0.75em;
+  text-align: left;
+  border: 1px solid var(--quote-border);
 }
 
 .workshop-comparison th {
-    background: var(--quote-bg);
-    font-weight: bold;
+  background: var(--quote-bg);
+  font-weight: bold;
 }
 
 .workshop-comparison tr:nth-child(even) {
-    background: var(--quote-bg);
+  background: var(--quote-bg);
 }
 
 /* Learning objectives list */
 .workshop-objectives {
-    background: var(--quote-bg);
-    padding: 1em;
-    border-radius: 4px;
-    margin: 1em 0;
+  background: var(--quote-bg);
+  padding: 1em;
+  border-radius: 4px;
+  margin: 1em 0;
 }
 
 .workshop-objectives h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .workshop-objectives ul {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 #error-flash {
