@@ -112,7 +112,7 @@ async function loadImage(imageUrl) {
   // As we're reading out the actual image data, this is considered a CORS request.
   // To work around hosts which don't allow CORS requests, fetch it through our backend
   // which doesn't have this browser restriction.
-  let proxiedImageUrl = `http://localhost:3001/image_proxy?url=${encodeURI(imageUrl)}`;
+  let proxiedImageUrl = `http://localhost:3001/image_proxy?url=${encodeURIComponent(imageUrl)}`;
   let response = await fetch(proxiedImageUrl);
   let buffer = await response.arrayBuffer();
   return new Uint8Array(buffer);
