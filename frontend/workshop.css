@@ -99,7 +99,11 @@
 }
 
 .workshop-output--noncompare {
-  overflow: hidden;
+  overflow: scroll;
+}
+
+.workshop-output--noncompare.workshop-output--orig-size img {
+  max-width: unset;
 }
 
 .workshop-output--compare__image-one {
@@ -115,10 +119,6 @@
 .workshop-output--compare__image-two {
   object-fit: contain;
   max-width: calc(var(--content-max-width) - 4em - 6px) !important;
-}
-
-.workshop-output--noncompare img {
-  max-width: none;
 }
 
 .workshop-output--compare__mask {
